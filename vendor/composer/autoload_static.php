@@ -26,6 +26,7 @@ class ComposerStaticInit8728c04e494a1d9d2834087054b67efe
             'yii\\bootstrap\\' => 14,
             'yii\\authclient\\' => 15,
             'yii\\' => 4,
+            'yii2tech\\html2pdf\\' => 18,
         ),
         'p' => 
         array (
@@ -34,6 +35,13 @@ class ComposerStaticInit8728c04e494a1d9d2834087054b67efe
         'm' => 
         array (
             'mdm\\admin\\' => 10,
+        ),
+        'k' => 
+        array (
+            'kartik\\time\\' => 12,
+            'kartik\\select2\\' => 15,
+            'kartik\\date\\' => 12,
+            'kartik\\base\\' => 12,
         ),
         'd' => 
         array (
@@ -122,15 +130,35 @@ class ComposerStaticInit8728c04e494a1d9d2834087054b67efe
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2',
         ),
+        'yii2tech\\html2pdf\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/yii2tech/html2pdf',
+        ),
         'phpDocumentor\\Reflection\\' => 
         array (
-            0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
-            1 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
-            2 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+            0 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+            1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+            2 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
         ),
         'mdm\\admin\\' => 
         array (
             0 => __DIR__ . '/..' . '/mdmsoft/yii2-admin',
+        ),
+        'kartik\\time\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/yii2-widget-timepicker',
+        ),
+        'kartik\\select2\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/yii2-widget-select2',
+        ),
+        'kartik\\date\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/yii2-widget-datepicker',
+        ),
+        'kartik\\base\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/yii2-krajee-base',
         ),
         'dektrium\\user\\' => 
         array (
