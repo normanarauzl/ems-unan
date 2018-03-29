@@ -4,6 +4,10 @@ $params = require(__DIR__ . '/params.php');
 $db = require(__DIR__ . '/db.php');
 
 $config = [
+    'aliases' => [
+			'@adminlte/widgets'=>'@vendor/adminlte/yii2-widgets'
+	    	],
+    //Insertada plantilla
     'modules' => [
         'user' => [
             'class' => 'dektrium\user\Module',

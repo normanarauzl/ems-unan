@@ -96,7 +96,7 @@ abstract class Application extends Module
     /**
      * @var string the application name.
      */
-    public $name = 'My Application';
+    public $name = 'ReservaDatashows';
     /**
      * @var string the charset currently used for the application.
      */
@@ -107,13 +107,13 @@ abstract class Application extends Module
      * for English, while `en-US` stands for English (United States).
      * @see sourceLanguage
      */
-    public $language = 'en-US';
+    public $language = 'es';
     /**
      * @var string the language that the application is written in. This mainly refers to
      * the language that the messages and view files are written in.
      * @see language
      */
-    public $sourceLanguage = 'en-US';
+    public $sourceLanguage = 'es';
     /**
      * @var Controller the currently active controller instance
      */
