@@ -27,7 +27,7 @@ use yii\helpers\ArrayHelper;
     <?= $form->field($model, 'Id_Turno')->dropDownList(ArrayHelper::map(Turnos::find()->select(['Descripcion','Id_Turno'])->all(), 'Id_Turno', 'Descripcion'),['class' => 'form-control inline-block'],['prompt'=>'Seleccione el turno']); ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Crear') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

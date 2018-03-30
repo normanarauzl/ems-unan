@@ -19,7 +19,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'Clasificacion')->dropDownList(['1' => 'Oficina', '2' => 'Mantenimiento', '3' => 'Aula', '4' => 'Sala/Auditorio']) ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Crear') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

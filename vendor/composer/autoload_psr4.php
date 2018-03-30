@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'yii\\swiftmailer\\' => array($vendorDir . '/yiisoft/yii2-swiftmailer'),
+    'yii\\jui\\' => array($vendorDir . '/yiisoft/yii2-jui'),
     'yii\\httpclient\\' => array($vendorDir . '/yiisoft/yii2-httpclient'),
     'yii\\gii\\' => array($vendorDir . '/yiisoft/yii2-gii'),
     'yii\\faker\\' => array($vendorDir . '/yiisoft/yii2-faker'),
@@ -16,7 +17,7 @@ return array(
     'yii\\authclient\\' => array($vendorDir . '/yiisoft/yii2-authclient'),
     'yii\\' => array($vendorDir . '/yiisoft/yii2'),
     'yii2tech\\html2pdf\\' => array($vendorDir . '/yii2tech/html2pdf'),
-    'phpDocumentor\\Reflection\\' => array($vendorDir . '/phpdocumentor/type-resolver/src', $vendorDir . '/phpdocumentor/reflection-docblock/src', $vendorDir . '/phpdocumentor/reflection-common/src'),
+    'phpDocumentor\\Reflection\\' => array($vendorDir . '/phpdocumentor/reflection-common/src', $vendorDir . '/phpdocumentor/reflection-docblock/src', $vendorDir . '/phpdocumentor/type-resolver/src'),
     'mdm\\admin\\' => array($vendorDir . '/mdmsoft/yii2-admin'),
     'kartik\\time\\' => array($vendorDir . '/kartik-v/yii2-widget-timepicker'),
     'kartik\\select2\\' => array($vendorDir . '/kartik-v/yii2-widget-select2'),
