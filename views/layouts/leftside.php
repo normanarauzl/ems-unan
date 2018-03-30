@@ -69,7 +69,15 @@ use yii\helpers\Url;
                         ['label' => 'Ubicaciones', 'icon' => 'fa fa-compass', 'url' => ['/ubicaciones/index'],],
                         ['label' => 'Periodos', 'icon' => 'fa fa-clock-o', 'url' => ['/periodos/index'],],
                         ['label' => 'Prestamos', 'icon' => 'fa fa-sliders', 'url' => ['/prestamos/index'],],
-                        ['label' => 'Equipos', 'icon' => 'fa fa-file-video-o', 'url' => ['/equipos/index'],],
+                        [
+                            'label' => 'Equipos',
+                            'icon' => 'fa fa-file-video-o',
+                            'url' => '#',
+                            'items' => [
+                                ['label' => 'Equipos', 'icon' => 'fa fa-video-camera', 'url' => ['/equipos/index'],],
+                                ['label' => 'Tipos de equipos', 'icon' => 'fa fa-connectdevelop', 'url' => ['/tipo/index'],]
+                            ]
+                        ],
                         ['label' => 'Solicitudes', 'icon' => 'fa fa-hand-paper-o', 'url' => ['/solicitudes/index'],],
                         ['label' => 'Gii', 'icon' => 'fa fa-file-code-o', 'url' => ['/gii'],],
                         ['label' => 'Debug', 'icon' => 'fa fa-dashboard', 'url' => ['/debug'],],
