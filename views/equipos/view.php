@@ -37,7 +37,11 @@ $this->params['breadcrumbs'][] = $this->title;
             'No_Serie',
             'Cod_Inventario',
             'Color',
-            'Estado',
+//            'Estado',
+            [
+             'attribute' => 'Estado',
+             'value' => 1 ? 'Bueno' : 'Malo',
+            ],
             'Descripcion',
             'Ubicacion_Origen',
             'Ubicacion_Actual',

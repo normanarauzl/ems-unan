@@ -28,6 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'Descripcion',
             'PermitirUsuario',
 
+
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

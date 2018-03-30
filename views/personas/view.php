@@ -33,8 +33,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'Apellido',
             'Cedula',
             'Telefono',
-            'Tipo',
-            'Estado',
+//            'Tipo',
+//            'Estado',
+            [
+             'attribute' => 'Estado',
+             'value' => 1 ? 'Activo' : 'Inactivo',
+            ],
         ],
     ]) ?>
 
