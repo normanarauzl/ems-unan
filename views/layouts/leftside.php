@@ -65,7 +65,7 @@ use yii\helpers\Url;
 //                        ],
                         ['label' => 'Ayudantes', 'icon' => 'fa fa-user-secret', 'url' => ['/ayudantes/index'],],
                         ['label' => 'Personas', 'icon' => 'fa fa-users', 'url' => ['/personas/index'],],
-                        ['label' => 'Mantenimientos', 'icon' => 'fa fa-gears', 'url' => ['/mantenimiento/index'],],
+                        ['label' => 'Mantenimientos', 'icon' => 'fa fa-ambulance', 'url' => ['/mantenimiento/index'],],
                         ['label' => 'Ubicaciones', 'icon' => 'fa fa-compass', 'url' => ['/ubicaciones/index'],],
                         ['label' => 'Periodos', 'icon' => 'fa fa-clock-o', 'url' => ['/periodos/index'],],
                         ['label' => 'Prestamos', 'icon' => 'fa fa-sliders', 'url' => ['/prestamos/index'],],

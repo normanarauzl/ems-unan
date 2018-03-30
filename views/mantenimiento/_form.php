@@ -18,7 +18,7 @@ use yii\jui\DatePicker;
 
     <?= $form->field($model, 'Id_Ubicacion')->dropDownList(ArrayHelper::map(Ubicaciones::find()->select(['Descripcion','Id_Ubicacion'])->all(), 'Id_Ubicacion', 'Descripcion'),['class' => 'form-control inline-block'],['prompt'=>'Seleccione la ubicacion']); ?>
 
-    <?= $form->field($model,'Fecha')->widget(DatePicker::className(),['language' => 'es','class'=>'form-control','dateFormat' => 'php:Y-m-d']) ?>
+    <?= $form->field($model,'Fecha')->widget(DatePicker::className(),['language' => 'es','dateFormat' => 'php:Y-m-d']) ?>
 
     <?= $form->field($model, 'Observacion')->textInput(['maxlength' => true]) ?>
 
