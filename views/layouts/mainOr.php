@@ -50,7 +50,7 @@ AppAsset::register($this);
             ['label' => 'Turnos', 'url' => ['/turnos/index']],
             ['label' => 'Ubicaciones', 'url' => ['/ubicaciones/index']],
             Yii::$app->user->isGuest ? (
-                ['label' => 'Login', 'url' => ['/site/login']]
+                ['label' => 'Ingresar', 'url' => ['/site/login']]
             ) : (
                 '<li>'
                 . Html::beginForm(['/site/logout'], 'post')

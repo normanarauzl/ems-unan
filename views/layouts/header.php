@@ -3,7 +3,7 @@ use yii\helpers\Html;
 ?>
 <header class="main-header">
         <!-- Logo -->
-        <a href="index2.html" class="logo">
+        <a href="./" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>R</b>D</span>
           <!-- logo for regular state and mobile devices -->
@@ -245,6 +245,9 @@ use yii\helpers\Html;
                Control Sidebar Toggle Button -->
               <li>
 <!--                <a href="site/logout" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>-->
+                     <!-- Menu Footer-->
+                  <li class="user-footer">
+                  </li>
                         <li class="user-footer">
                             <div class="pull-right">
                                 <?= Html::a(

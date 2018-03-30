@@ -30,6 +30,7 @@ $baseUrl    = $asset->baseUrl;
     <?= $this->render('leftside.php', ['baserUrl' => $baseUrl]) ?>
     <?= $this->render('content.php', ['content' => $content]) ?>
     <?= $this->render('footer.php', ['baserUrl' => $baseUrl]) ?>
+    
 </div>
 
 <!--footer class="footer">
