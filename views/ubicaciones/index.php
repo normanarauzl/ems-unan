@@ -26,8 +26,22 @@ $this->params['breadcrumbs'][] = $this->title;
 
 //            'Id_Ubicacion',
             'Descripcion',
-            'Estado',
-            'Clasificacion',
+//            'Estado',
+            [
+            'attribute' => 'Estado',
+            'value' => function ($model) {
+                 return $model->Estado == 1 ? 'Activo' : 'Inactivo';
+            },
+            ],
+//            'Clasificacion',
+            [
+            'attribute' => 'Clasificacion',
+            'value' => function ($model) {
+                 return $model->Clasificacion == 1 ? 'Oficina' : 
+                        $model->Clasificacion == 2 ? 'Mantenimiento' :
+                        $model->Clasificacion == 3 ? 'Aulas': 'Salas/Auditorios';
+            },
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

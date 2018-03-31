@@ -71,4 +71,5 @@ class Tipo extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Equipos::className(), ['Id_Tipo' => 'Id_Tipo']);
     }
+    
 }

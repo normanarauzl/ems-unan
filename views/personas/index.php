@@ -30,7 +30,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'Cedula',
             'Telefono',
 //             'Tipo',
-             'Estado',
+//             'Estado',
+            [
+            'attribute' => 'Estado',
+            'value' => function ($model) {
+                 return $model->Estado == 1 ? 'Activo' : 'Inactivo';
+            },
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

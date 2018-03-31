@@ -36,7 +36,13 @@ $this->params['breadcrumbs'][] = $this->title;
              'No_Serie',
              'Cod_Inventario',
              'Color',
-             'Estado',
+//             'Estado',
+                [
+                'attribute' => 'Estado',
+                'value' => function ($model) {
+                     return $model->Estado == 1 ? 'Bueno' : 'Malo';
+                },
+                ],
              'Descripcion',
              'Ubicacion_Origen',
              'Ubicacion_Actual',

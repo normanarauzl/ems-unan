@@ -26,8 +26,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
 //            'Id_Tipo',
             'Descripcion',
-            'PermitirUsuario',
-
+//            'PermitirUsuario',
+            [
+            'attribute' => 'PermitirUsuario',
+            'value' => function ($model) {
+                 return $model->PermitirUsuario == 1 ? 'Si' : 'No';
+            },
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

@@ -26,7 +26,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
 //            'Id_Turno',
             'Descripcion',
-            'Estado',
+//            'Estado',
+            [
+            'attribute' => 'Estado',
+            'value' => function ($model) {
+                 return $model->Estado == 1 ? 'Activo' : 'Inactivo';
+            },
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
