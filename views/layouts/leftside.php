@@ -11,10 +11,11 @@ use yii\helpers\Url;
         <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
-<?= Html::img('@web/img/user2-160x160.jpg', ['class' => 'img-circle', 'alt' => 'User Image']) ?>
+<?= Html::img('@web/img/logounan.png', ['class' => 'img-circle', 'alt' => 'Logo UNAN']) ?>
             </div>
             <div class="pull-left info">
-                <p>Bienvenid@s</p>
+                <p>Bienvenid@s al Sistema</p>
+                <p>Reserva de Datashow</p>
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>

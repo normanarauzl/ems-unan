@@ -65,4 +65,11 @@ class Ubicaciones extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Solicitud::className(), ['Id_Ubicacion' => 'Id_Ubicacion']);
     }
+    
+    /**
+     * Funcion para determinar la clasificacion de la ubicacion
+     */
+    public function getClasificaciones() {
+       return array('1' => 'Oficina', '2' => 'Mantenimiento', '3' => 'Aulas','4' => 'Salas/Auditorios');
+    }
 }

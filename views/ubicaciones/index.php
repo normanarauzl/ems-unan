@@ -18,6 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a(Yii::t('app', 'Create Ubicaciones'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
+ $categorias = $ubicaciones->categorias;
 <?php Pjax::begin(); ?>    <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -34,6 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
             },
             ],
 //            'Clasificacion',
+//                    Falta corregir la vista en el GRID
             [
             'attribute' => 'Clasificacion',
             'value' => function ($model) {
@@ -42,6 +44,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         $model->Clasificacion == 3 ? 'Aulas': 'Salas/Auditorios';
             },
             ],
+
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
