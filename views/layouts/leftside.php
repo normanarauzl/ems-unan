@@ -79,7 +79,7 @@ use yii\helpers\Url;
                                 ['label' => 'Tipos de equipos', 'icon' => 'fa fa-connectdevelop', 'url' => ['/tipo/index'],]
                             ]
                         ],
-                        ['label' => 'Solicitudes', 'icon' => 'fa fa-hand-paper-o', 'url' => ['/solicitudes/index'],],
+                        ['label' => 'Solicitudes', 'icon' => 'fa fa-hand-paper-o', 'url' => ['/solicitud/index'],],
                         ['label' => 'Gii', 'icon' => 'fa fa-file-code-o', 'url' => ['/gii'],],
                         ['label' => 'Debug', 'icon' => 'fa fa-dashboard', 'url' => ['/debug'],],
                         
