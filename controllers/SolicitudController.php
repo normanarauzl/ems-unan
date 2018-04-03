@@ -4,7 +4,11 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Solicitud;
+
 use app\models\SolicitudesSearch;
+
+use app\models\SolicitudSearch;
+
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -35,6 +39,7 @@ class SolicitudController extends Controller
      */
     public function actionIndex()
     {
+
         $searchModel = new SolicitudesSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 

@@ -14,7 +14,7 @@ use yii\helpers\ArrayHelper;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'Id_Tipo')->dropDownList(ArrayHelper::map(Tipo::find()->select(['Descripcion','Id_Tipo'])->all(), 'Id_Tipo', 'Descripcion'),['class' => 'form-control inline-block'],['prompt'=>'Seleccione el tipo de equipos']); ?>
+    <?= $form->field($model, 'Id_Tipo')->dropDownList(ArrayHelper::map(Tipo::find()->select(['Descripcion','Id_Tipo'])->all(), 'Id_Tipo', 'Descripcion'),['class' => 'form-control inline-block'],['prompt'=>'Seleccione el tipo de equipo']); ?>
 
     <?= $form->field($model, 'Prestado')->textInput() ?>
 

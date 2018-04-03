@@ -46,8 +46,13 @@ use yii\widgets\ActiveForm;
     <?php // echo $form->field($model, 'Id_Periodo') ?>
 
     <div class="form-group">
+<<<<<<< HEAD
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
         <?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>
+=======
+        <?= Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>
+        <?= Html::resetButton(Yii::t('app', 'Reset'), ['class' => 'btn btn-default']) ?>
+>>>>>>> b1d1dce19a906f081017abfbbb3b1a1099c565a9
     </div>
 
     <?php ActiveForm::end(); ?>

@@ -16,7 +16,7 @@ use yii\helpers\Url;
             <div class="pull-left info">
                 <p>Bienvenid@s al Sistema</p>
                 <p>Reserva de Datashow</p>
-                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                <a href="#"><i class="fa fa-circle text-success"></i> En línea</a>
             </div>
         </div>
 <!--         search form 
