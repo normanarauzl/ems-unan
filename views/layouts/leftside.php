@@ -16,7 +16,7 @@ use yii\helpers\Url;
             <div class="pull-left info">
                 <p>Bienvenid@s al Sistema</p>
                 <p>Reserva de Datashow</p>
-                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                <a href="#"><i class="fa fa-circle text-success"></i> En línea</a>
             </div>
         </div>
 <!--         search form 
@@ -79,7 +79,7 @@ use yii\helpers\Url;
                                 ['label' => 'Tipos de equipos', 'icon' => 'fa fa-connectdevelop', 'url' => ['/tipo/index'],]
                             ]
                         ],
-                        ['label' => 'Solicitudes', 'icon' => 'fa fa-hand-paper-o', 'url' => ['/solicitudes/index'],],
+                        ['label' => 'Solicitudes', 'icon' => 'fa fa-hand-paper-o', 'url' => ['/solicitud/index'],],
                         ['label' => 'Gii', 'icon' => 'fa fa-file-code-o', 'url' => ['/gii'],],
                         ['label' => 'Debug', 'icon' => 'fa fa-dashboard', 'url' => ['/debug'],],
                         

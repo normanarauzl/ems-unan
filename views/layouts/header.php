@@ -232,33 +232,16 @@ use yii\helpers\Html;
                     </div>
                   </li>
                    Menu Footer
-                  <li class="user-footer">
-                    <div class="pull-left">
-                      <a href="#" class="btn btn-default btn-flat">Profile</a>
-                    </div>
+-->                  <li class="user-footer">
                     <div class="pull-right">
-                      <a href="#" class="btn btn-default btn-flat">Sign out</a>
-                    </div>
-                  </li>
-                </ul>
-              </li>
-               Control Sidebar Toggle Button -->
-              <li>
-<!--                <a href="site/logout" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>-->
-                     <!-- Menu Footer-->
-                  <li class="user-footer">
-                  </li>
-                        <li class="user-footer">
-                            <div class="pull-right">
-                                <?= Html::a(
+                      <?= Html::a(
                                     'Salir del Sistema',
                                     ['/site/logout'],
                                     ['data-method' => 'post', 'class' => 'btn btn-flaty btn-flat']
                                 ) ?>
-                            </div>
-                        </li>
-              </li>
-            </ul>
+                    </div>
+                  </li>
+                </ul>
           </div>
         </nav>
 
