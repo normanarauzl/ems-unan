@@ -16,6 +16,7 @@ class AdminLteAsset extends AssetBundle
         'css/AdminLTE.min.css',
         'css/skins/_all-skins.min.css',
         'css/style.css',
+
     ];
     public $js = [
         'plugins/fastclick/fastclick.min.js',
@@ -26,9 +27,10 @@ class AdminLteAsset extends AssetBundle
         'plugins/slimScroll/jquery.slimscroll.min.js',
         'plugins/chartjs/Chart.min.js',
         //'js/pages/dashboard2.js',
-    ];
+];
     public $depends = [
         'app\assets\FontawesomeAsset',
+        'app\assets\AppAsset',
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
         'yii\bootstrap\BootstrapPluginAsset',

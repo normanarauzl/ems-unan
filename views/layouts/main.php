@@ -22,7 +22,7 @@ $baseUrl    = $asset->baseUrl;
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini" ng-app="ngApp">
 <?php $this->beginBody() ?>
 
 <div class="wrapper">

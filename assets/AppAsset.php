@@ -19,8 +19,15 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'css/site.css',
+        'alertify/js/css/themes/bootstrap.css',
+        'alertify/js/css/themes/default.css',
+        'alertify/js/css/alertify.css',
+
     ];
     public $js = [
+        'alertify/js/alertify.min.js',
+        'angular/angular.min.js',
+        'angular/ngApp.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

@@ -10,8 +10,9 @@ use yii\grid\GridView;
 $this->title = 'Solicitudes';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="solicitud-index">
+<div class="solicitud-index" ng-controller="SolicitudController">
 
+    
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
