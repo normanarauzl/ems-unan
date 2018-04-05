@@ -12,12 +12,13 @@ use app\models\Ayudantes;
 use app\models\ListaPeriodos;
 use app\models\Equipos;
 use yii\helpers\Json;
+use yii\db\Query;
+use app\models\ListaEquipos;
 /* @var $this yii\web\View */
 /* @var $model app\models\Solicitud */
 /* @var $form yii\widgets\ActiveForm */
 
-$data = ArrayHelper::map(Equipos::find()->where(['Estado'=>'1'])->all(), 'Id_Equipo', 'Descripcion');
-
+$data = ArrayHelper::map(ListaEquipos::find()->where(['Estado'=>'1'])->andWhere(['PermitirUsuario'=>'1'])->all(), 'Id_Equipo', 'Descripcion');
 ?>
 
 <span ng-init='detalleSolicitud = <?= Json::encode($model->detalleSolicituds)?>'></span>
@@ -135,12 +136,6 @@ $data = ArrayHelper::map(Equipos::find()->where(['Estado'=>'1'])->all(), 'Id_Equ
             ]);
             ?>
         </div>
-        <div class="col-md-2">
-            <?= $form->field($model, 'Estado_Solicitud')->dropDownList(
-                ['1'=>'Abierto','2'=>'Cerrado'],
-                ['prompt'=>'Estado de la Solicitud','required'=>true]
-            )?>
-        </div>
     </div>
     <br>
 
@@ -222,7 +217,7 @@ $data = ArrayHelper::map(Equipos::find()->where(['Estado'=>'1'])->all(), 'Id_Equ
                 'name' => 'Entregado_Por',
                 'model'=>$model,
                 'attribute'=> 'Entregado_Por',
-                'data' => ArrayHelper::map(Ayudantes::find()->asArray()->all(), 'Id_Ayudante', 'Nombre_Ayudante'),
+                'data' => ArrayHelper::map(Ayudantes::find()->where(['Estado_Ayudante'=>'1'])->asArray()->all(), 'Id_Ayudante', 'Nombre_Ayudante'),
                 'options' =>
                     [
                         'multiple' => false,
@@ -238,7 +233,7 @@ $data = ArrayHelper::map(Equipos::find()->where(['Estado'=>'1'])->all(), 'Id_Equ
                 'name' => 'Retirado_Por',
                 'model'=>$model,
                 'attribute'=> 'Retirado_Por',
-                'data' => ArrayHelper::map(Ayudantes::find()->asArray()->all(), 'Id_Ayudante', 'Nombre_Ayudante'),
+                'data' => ArrayHelper::map(Ayudantes::find()->where(['Estado_Ayudante'=>'1'])->asArray()->all(), 'Id_Ayudante', 'Nombre_Ayudante'),
                 'options' =>
                     [
                         'multiple' => false,
@@ -252,7 +247,7 @@ $data = ArrayHelper::map(Equipos::find()->where(['Estado'=>'1'])->all(), 'Id_Equ
     <?= $form->field($model, 'Observaciones')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'Crear' : 'Actualizar', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
