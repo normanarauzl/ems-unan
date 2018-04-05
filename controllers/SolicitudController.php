@@ -12,6 +12,8 @@ use app\models\SolicitudSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\Equipos;
+use yii\helpers\Json;
 
 /**
  * SolicitudController implements the CRUD actions for Solicitud model.
@@ -31,6 +33,12 @@ class SolicitudController extends Controller
                 ],
             ],
         ];
+    }
+
+    public function actionDatosEquipo($Id_Equipo)
+    {
+        $json = Equipos::findOne(['Id_Equipo'=>$Id_Equipo]);
+        return Json::encode($json);
     }
 
     /**
