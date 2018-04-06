@@ -42,7 +42,7 @@ class TipoEquipo extends \yii\db\ActiveRecord
         return [
             'Id' => Yii::t('app', 'ID'),
             'Descripcion' => Yii::t('app', 'Descripcion'),
-            'PermitirUsuario' => Yii::t('app', 'Permitir Usuario'),
+            'PermitirUsuario' => Yii::t('app', 'Permitir prestamo al Usuario?'),
         ];
     }
 

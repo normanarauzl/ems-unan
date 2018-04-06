@@ -53,12 +53,12 @@ class Equipo extends \yii\db\ActiveRecord
     {
         return [
             'Id' => Yii::t('app', 'ID'),
-            'IdTipo' => Yii::t('app', 'Id Tipo'),
-            'Prestado' => Yii::t('app', 'Prestado'),
+            'IdTipo' => Yii::t('app', 'Tipo de equipo'),
+            'Prestado' => Yii::t('app', '¿Está Prestado?'),
             'Marca' => Yii::t('app', 'Marca'),
             'Modelo' => Yii::t('app', 'Modelo'),
-            'NoSerie' => Yii::t('app', 'No Serie'),
-            'CodInventario' => Yii::t('app', 'Cod Inventario'),
+            'NoSerie' => Yii::t('app', 'No de Serie'),
+            'CodInventario' => Yii::t('app', 'Cod. Inventario'),
             'Color' => Yii::t('app', 'Color'),
             'Estado' => Yii::t('app', 'Estado'),
             'Descripcion' => Yii::t('app', 'Descripcion'),

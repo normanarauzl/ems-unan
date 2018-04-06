@@ -47,7 +47,7 @@ class ListaEquipos extends \yii\db\ActiveRecord
             'Marca' => 'Marca',
             'Modelo' => 'Modelo',
             'Color' => 'Color',
-            'NoSerie' => 'No Serie',
+            'NoSerie' => 'No. de Serie',
             'Estado' => 'Estado',
             'Descripcion' => 'Descripcion',
             'PermitirUsuario' => 'Permitir Usuario',

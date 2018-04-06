@@ -20,12 +20,12 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'HoraFin')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'Estado')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'Estado')->dropDownList(['1' => 'Activo', '2' => 'Inactivo']) ?>
 
     <?= $form->field($model, 'IdTurno')->textInput() ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Crear') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
