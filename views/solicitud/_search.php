@@ -15,44 +15,35 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'Id_Solicitud') ?>
+    <?= $form->field($model, 'Id') ?>
 
-    <?= $form->field($model, 'Id_Persona') ?>
+    <?= $form->field($model, 'IdPersona') ?>
 
-    <?= $form->field($model, 'Id_Ubicacion') ?>
+    <?= $form->field($model, 'IdUbicacion') ?>
 
-    <?= $form->field($model, 'Fecha_Inicio') ?>
+    <?= $form->field($model, 'FechaInicio') ?>
 
-    <?= $form->field($model, 'Fecha_Fin') ?>
+    <?= $form->field($model, 'FechaFin') ?>
 
-    <?php // echo $form->field($model, 'Hora_Inicio') ?>
+    <?php // echo $form->field($model, 'Estado') ?>
 
-    <?php // echo $form->field($model, 'Hora_Fin') ?>
+    <?php // echo $form->field($model, 'FechaSolicitud') ?>
 
-    <?php // echo $form->field($model, 'Estado_Solicitud') ?>
+    <?php // echo $form->field($model, 'EntregadoPor') ?>
 
-    <?php // echo $form->field($model, 'Fecha_Solicitud') ?>
+    <?php // echo $form->field($model, 'RetiradoPor') ?>
 
-    <?php // echo $form->field($model, 'Entregado_Por') ?>
+    <?php // echo $form->field($model, 'Observacion1') ?>
 
-    <?php // echo $form->field($model, 'Retirado_Por') ?>
+    <?php // echo $form->field($model, 'Observacion2') ?>
 
-    <?php // echo $form->field($model, 'Observaciones') ?>
+    <?php // echo $form->field($model, 'Observacion3') ?>
 
-    <?php // echo $form->field($model, 'Observaciones_2') ?>
-
-    <?php // echo $form->field($model, 'Observaciones_3') ?>
-
-    <?php // echo $form->field($model, 'Id_Periodo') ?>
+    <?php // echo $form->field($model, 'IdPeriodo') ?>
 
     <div class="form-group">
-<<<<<<< HEAD
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
         <?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>
-=======
-        <?= Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton(Yii::t('app', 'Reset'), ['class' => 'btn btn-default']) ?>
->>>>>>> b1d1dce19a906f081017abfbbb3b1a1099c565a9
     </div>
 
     <?php ActiveForm::end(); ?>

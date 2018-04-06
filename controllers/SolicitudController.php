@@ -4,16 +4,10 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Solicitud;
-
-use app\models\SolicitudesSearch;
-
 use app\models\SolicitudSearch;
-
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use app\models\Equipos;
-use yii\helpers\Json;
 
 /**
  * SolicitudController implements the CRUD actions for Solicitud model.
@@ -35,20 +29,13 @@ class SolicitudController extends Controller
         ];
     }
 
-    public function actionDatosEquipo($Id_Equipo)
-    {
-        $json = Equipos::findOne(['Id_Equipo'=>$Id_Equipo]);
-        return Json::encode($json);
-    }
-
     /**
      * Lists all Solicitud models.
      * @return mixed
      */
     public function actionIndex()
     {
-
-        $searchModel = new SolicitudesSearch();
+        $searchModel = new SolicitudSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -79,7 +66,7 @@ class SolicitudController extends Controller
         $model = new Solicitud();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->Id_Solicitud]);
+            return $this->redirect(['view', 'id' => $model->Id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -98,7 +85,7 @@ class SolicitudController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->Id_Solicitud]);
+            return $this->redirect(['view', 'id' => $model->Id]);
         } else {
             return $this->render('update', [
                 'model' => $model,

@@ -183,31 +183,31 @@ $data = ArrayHelper::map(ListaEquipos::find()->where(['Estado'=>'1'])->andWhere(
 
     <br>
     <div class="panel panel-primary">
-    <table class="table table-bordered table-condensed table-striped">
-        <tbody>
-        <thead>
-        <tr>
-            <th width="15%">Equipo</th>
-            <th width="20%">Marca</th>
-            <th width="20%">Modelo</th>
-            <th width="10%">Color</th>
-            <th width="10%">Serie</th>
-            <th width="5%"></th>
-        </tr>
-        </thead>
-        <tr ng-repeat="equipo in detalleSolicitud track by $index">
-            <td hidden ng-model="invitacion.Id">{{equipo.Id}}</td>
-            <td ng-model="equipo.Id_Equipo">{{equipo.Id_Equipo}}</td>
-            <td ng-model="equipo.Marca">{{equipo.Marca}}</td>
-            <td ng-model="equipo.Color">{{equipo.Color}}</td>
-            <td ng-model="equipo.Modelo">{{equipo.Modelo}}</td>
-            <td ng-model="equipo.No_Serie">{{equipo.No_Serie}}</td>
-            <td>
-                <button type="button" ng-click="del($index)" title='Borrar' class='btn btn-danger'><i class="glyphicon glyphicon-minus"></i></button>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+        <table class="table table-bordered table-condensed table-striped">
+            <tbody>
+            <thead>
+            <tr>
+                <th width="15%">Equipo</th>
+                <th width="20%">Marca</th>
+                <th width="20%">Modelo</th>
+                <th width="10%">Color</th>
+                <th width="10%">Serie</th>
+                <th width="5%"></th>
+            </tr>
+            </thead>
+            <tr ng-repeat="equipo in detalleSolicitud track by $index">
+                <td hidden ng-model="invitacion.Id">{{equipo.Id}}</td>
+                <td ng-model="equipo.Id_Equipo">{{equipo.Id_Equipo}}</td>
+                <td ng-model="equipo.Marca">{{equipo.Marca}}</td>
+                <td ng-model="equipo.Color">{{equipo.Color}}</td>
+                <td ng-model="equipo.Modelo">{{equipo.Modelo}}</td>
+                <td ng-model="equipo.No_Serie">{{equipo.No_Serie}}</td>
+                <td>
+                    <button type="button" ng-click="del($index)" title='Borrar' class='btn btn-danger'><i class="glyphicon glyphicon-minus"></i></button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
     </div>
     <div class="row">
         <div class="col-md-6">
