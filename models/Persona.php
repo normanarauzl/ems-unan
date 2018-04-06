@@ -51,14 +51,14 @@ class Persona extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'Id' => Yii::t('app', 'ID'),
-            'Nombres' => Yii::t('app', 'Nombres'),
-            'Apellidos' => Yii::t('app', 'Apellidos'),
-            'Cedula' => Yii::t('app', 'Cedula'),
-            'Telefono' => Yii::t('app', 'Telefono'),
-            'Estado' => Yii::t('app', 'Estado'),
-            'IdTipo' => Yii::t('app', 'Id Tipo'),
-            'IdUsuario' => Yii::t('app', 'Id Usuario'),
+            'Id' => 'ID',
+            'Nombres' => 'Nombres',
+            'Apellidos' => 'Apellidos',
+            'Cedula' => 'Cedula',
+            'Telefono' => 'Telefono',
+            'Estado' => 'Estado',
+            'IdTipo' => 'Tipo de Persona',
+            'IdUsuario' => 'Id Usuario',
         ];
     }
 
