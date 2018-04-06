@@ -3,16 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Mantenimiento;
-use app\models\MantenimientoSearch;
+use app\models\Periodo;
+use app\models\PeriodoSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * MantenimientoController implements the CRUD actions for Mantenimiento model.
+ * PeriodoController implements the CRUD actions for Periodo model.
  */
-class MantenimientoController extends Controller
+class PeriodoController extends Controller
 {
     /**
      * @inheritdoc
@@ -30,12 +30,12 @@ class MantenimientoController extends Controller
     }
 
     /**
-     * Lists all Mantenimiento models.
+     * Lists all Periodo models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new MantenimientoSearch();
+        $searchModel = new PeriodoSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class MantenimientoController extends Controller
     }
 
     /**
-     * Displays a single Mantenimiento model.
+     * Displays a single Periodo model.
      * @param integer $id
      * @return mixed
      */
@@ -57,13 +57,13 @@ class MantenimientoController extends Controller
     }
 
     /**
-     * Creates a new Mantenimiento model.
+     * Creates a new Periodo model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Mantenimiento();
+        $model = new Periodo();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->Id]);
@@ -75,7 +75,7 @@ class MantenimientoController extends Controller
     }
 
     /**
-     * Updates an existing Mantenimiento model.
+     * Updates an existing Periodo model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -94,7 +94,7 @@ class MantenimientoController extends Controller
     }
 
     /**
-     * Deletes an existing Mantenimiento model.
+     * Deletes an existing Periodo model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -107,15 +107,15 @@ class MantenimientoController extends Controller
     }
 
     /**
-     * Finds the Mantenimiento model based on its primary key value.
+     * Finds the Periodo model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Mantenimiento the loaded model
+     * @return Periodo the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Mantenimiento::findOne($id)) !== null) {
+        if (($model = Periodo::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

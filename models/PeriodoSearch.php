@@ -5,12 +5,12 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Mantenimiento;
+use app\models\Periodo;
 
 /**
- * MantenimientoSearch represents the model behind the search form about `app\models\Mantenimiento`.
+ * PeriodoSearch represents the model behind the search form about `app\models\Periodo`.
  */
-class MantenimientoSearch extends Mantenimiento
+class PeriodoSearch extends Periodo
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class MantenimientoSearch extends Mantenimiento
     public function rules()
     {
         return [
-            [['Id', 'IdUbicacion', 'IdAyudante'], 'integer'],
-            [['Fecha', 'Observacion'], 'safe'],
+            [['Id', 'DuracionMinutos', 'IdTurno'], 'integer'],
+            [['Descripcion', 'HoriaInicio', 'HoraFin', 'Estado'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class MantenimientoSearch extends Mantenimiento
      */
     public function search($params)
     {
-        $query = Mantenimiento::find();
+        $query = Periodo::find();
 
         // add conditions that should always apply here
 
@@ -60,12 +60,14 @@ class MantenimientoSearch extends Mantenimiento
         // grid filtering conditions
         $query->andFilterWhere([
             'Id' => $this->Id,
-            'IdUbicacion' => $this->IdUbicacion,
-            'IdAyudante' => $this->IdAyudante,
+            'DuracionMinutos' => $this->DuracionMinutos,
+            'IdTurno' => $this->IdTurno,
         ]);
 
-        $query->andFilterWhere(['like', 'Fecha', $this->Fecha])
-            ->andFilterWhere(['like', 'Observacion', $this->Observacion]);
+        $query->andFilterWhere(['like', 'Descripcion', $this->Descripcion])
+            ->andFilterWhere(['like', 'HoriaInicio', $this->HoriaInicio])
+            ->andFilterWhere(['like', 'HoraFin', $this->HoraFin])
+            ->andFilterWhere(['like', 'Estado', $this->Estado]);
 
         return $dataProvider;
     }

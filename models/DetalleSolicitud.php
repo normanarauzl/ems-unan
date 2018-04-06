@@ -7,11 +7,12 @@ use Yii;
 /**
  * This is the model class for table "detalle_solicitud".
  *
- * @property integer $Id_Tipo
- * @property integer $Id_Solicitud
+ * @property integer $Id
+ * @property integer $IdEquipo
+ * @property integer $IdSolicitud
  *
+ * @property Equipo $idEquipo
  * @property Solicitud $idSolicitud
- * @property Tipo $idTipo
  */
 class DetalleSolicitud extends \yii\db\ActiveRecord
 {
@@ -29,10 +30,9 @@ class DetalleSolicitud extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['Id_Tipo', 'Id_Solicitud'], 'required'],
-            [['Id_Tipo', 'Id_Solicitud'], 'integer'],
-            [['Id_Solicitud'], 'exist', 'skipOnError' => true, 'targetClass' => Solicitud::className(), 'targetAttribute' => ['Id_Solicitud' => 'Id_Solicitud']],
-            [['Id_Tipo'], 'exist', 'skipOnError' => true, 'targetClass' => Tipo::className(), 'targetAttribute' => ['Id_Tipo' => 'Id_Tipo']],
+            [['IdEquipo', 'IdSolicitud'], 'integer'],
+            [['IdEquipo'], 'exist', 'skipOnError' => true, 'targetClass' => Equipo::className(), 'targetAttribute' => ['IdEquipo' => 'Id']],
+            [['IdSolicitud'], 'exist', 'skipOnError' => true, 'targetClass' => Solicitud::className(), 'targetAttribute' => ['IdSolicitud' => 'Id']],
         ];
     }
 
@@ -42,9 +42,18 @@ class DetalleSolicitud extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'Id_Tipo' => 'Id  Tipo',
-            'Id_Solicitud' => 'Id  Solicitud',
+            'Id' => Yii::t('app', 'ID'),
+            'IdEquipo' => Yii::t('app', 'Id Equipo'),
+            'IdSolicitud' => Yii::t('app', 'Id Solicitud'),
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getIdEquipo()
+    {
+        return $this->hasOne(Equipo::className(), ['Id' => 'IdEquipo']);
     }
 
     /**
@@ -52,14 +61,6 @@ class DetalleSolicitud extends \yii\db\ActiveRecord
      */
     public function getIdSolicitud()
     {
-        return $this->hasOne(Solicitud::className(), ['Id_Solicitud' => 'Id_Solicitud']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getIdTipo()
-    {
-        return $this->hasOne(Tipo::className(), ['Id_Tipo' => 'Id_Tipo']);
+        return $this->hasOne(Solicitud::className(), ['Id' => 'IdSolicitud']);
     }
 }

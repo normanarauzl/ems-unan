@@ -4,21 +4,17 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Mantenimiento */
+/* @var $model app\models\Turno */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="mantenimiento-form">
+<div class="turno-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'IdUbicacion')->textInput() ?>
+    <?= $form->field($model, 'Descripcion')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'Fecha')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'Observacion')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'IdAyudante')->textInput() ?>
+    <?= $form->field($model, 'Estado')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

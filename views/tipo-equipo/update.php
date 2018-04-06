@@ -3,16 +3,16 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Mantenimiento */
+/* @var $model app\models\TipoEquipo */
 
 $this->title = Yii::t('app', 'Update {modelClass}: ', [
-    'modelClass' => 'Mantenimiento',
+    'modelClass' => 'Tipo Equipo',
 ]) . $model->Id;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Mantenimientos'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Tipo Equipos'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->Id, 'url' => ['view', 'id' => $model->Id]];
 $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 ?>
-<div class="mantenimiento-update">
+<div class="tipo-equipo-update">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

@@ -64,19 +64,35 @@ use yii\helpers\Url;
 //                            'url' => ['/user'],
 //                            'active' => $this->context->route == 'user/index',
 //                        ],
-                        ['label' => 'Ayudantes', 'icon' => 'fa fa-user-secret', 'url' => ['/ayudantes/index'],],
-                        ['label' => 'Personas', 'icon' => 'fa fa-users', 'url' => ['/personas/index'],],
+                       
+                        [
+                            'label' => 'Personas',
+                            'icon' => 'fa fa-users',
+                            'url' => '#',
+                            'items' => [
+                                ['label' => 'Personas', 'icon' => 'fa fa-user', 'url' => ['/persona/index'],],
+                                ['label' => 'Tipos de Personas', 'icon' => 'fa fa-key', 'url' => ['/tipo-persona/index'],]
+                            ]
+                        ],
                         ['label' => 'Mantenimientos', 'icon' => 'fa fa-ambulance', 'url' => ['/mantenimiento/index'],],
-                        ['label' => 'Ubicaciones', 'icon' => 'fa fa-compass', 'url' => ['/ubicaciones/index'],],
-                        ['label' => 'Periodos', 'icon' => 'fa fa-clock-o', 'url' => ['/periodos/index'],],
+                        ['label' => 'Ubicaciones', 'icon' => 'fa fa-compass', 'url' => ['/ubicacion/index'],],
                         ['label' => 'Prestamos', 'icon' => 'fa fa-sliders', 'url' => ['/prestamos/index'],],
                         [
                             'label' => 'Equipos',
                             'icon' => 'fa fa-file-video-o',
                             'url' => '#',
                             'items' => [
-                                ['label' => 'Equipos', 'icon' => 'fa fa-video-camera', 'url' => ['/equipos/index'],],
-                                ['label' => 'Tipos de equipos', 'icon' => 'fa fa-connectdevelop', 'url' => ['/tipo/index'],]
+                                ['label' => 'Equipos', 'icon' => 'fa fa-video-camera', 'url' => ['/equipo/index'],],
+                                ['label' => 'Tipos de equipos', 'icon' => 'fa fa-connectdevelop', 'url' => ['/tipo-equipo/index'],]
+                            ]
+                        ],
+                        [
+                            'label' => 'Horarios',
+                            'icon' => 'fa fa-clock-o',
+                            'url' => '#',
+                            'items' => [
+                                ['label' => 'Turnos', 'icon' => 'fa fa-edit', 'url' => ['/turno/index'],],
+                                ['label' => 'Periodos', 'icon' => 'fa fa-calendar', 'url' => ['/periodo/index'],]
                             ]
                         ],
                         ['label' => 'Solicitudes', 'icon' => 'fa fa-hand-paper-o', 'url' => ['/solicitud/index'],],

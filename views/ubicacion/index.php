@@ -4,19 +4,19 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\MantenimientoSearch */
+/* @var $searchModel app\models\UbicacionSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Mantenimientos');
+$this->title = Yii::t('app', 'Ubicacions');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="mantenimiento-index">
+<div class="ubicacion-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create Mantenimiento'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Create Ubicacion'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 <?php Pjax::begin(); ?>    <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -25,10 +25,9 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'Id',
-            'IdUbicacion',
-            'Fecha',
-            'Observacion',
-            'IdAyudante',
+            'Descripcion',
+            'Estado',
+            'Clasificacion',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

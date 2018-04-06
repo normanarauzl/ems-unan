@@ -5,12 +5,12 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Mantenimiento;
+use app\models\Turno;
 
 /**
- * MantenimientoSearch represents the model behind the search form about `app\models\Mantenimiento`.
+ * TurnoSearch represents the model behind the search form about `app\models\Turno`.
  */
-class MantenimientoSearch extends Mantenimiento
+class TurnoSearch extends Turno
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class MantenimientoSearch extends Mantenimiento
     public function rules()
     {
         return [
-            [['Id', 'IdUbicacion', 'IdAyudante'], 'integer'],
-            [['Fecha', 'Observacion'], 'safe'],
+            [['Id'], 'integer'],
+            [['Descripcion', 'Estado'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class MantenimientoSearch extends Mantenimiento
      */
     public function search($params)
     {
-        $query = Mantenimiento::find();
+        $query = Turno::find();
 
         // add conditions that should always apply here
 
@@ -60,12 +60,10 @@ class MantenimientoSearch extends Mantenimiento
         // grid filtering conditions
         $query->andFilterWhere([
             'Id' => $this->Id,
-            'IdUbicacion' => $this->IdUbicacion,
-            'IdAyudante' => $this->IdAyudante,
         ]);
 
-        $query->andFilterWhere(['like', 'Fecha', $this->Fecha])
-            ->andFilterWhere(['like', 'Observacion', $this->Observacion]);
+        $query->andFilterWhere(['like', 'Descripcion', $this->Descripcion])
+            ->andFilterWhere(['like', 'Estado', $this->Estado]);
 
         return $dataProvider;
     }

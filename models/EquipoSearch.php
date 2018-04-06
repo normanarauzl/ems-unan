@@ -5,12 +5,12 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Mantenimiento;
+use app\models\Equipo;
 
 /**
- * MantenimientoSearch represents the model behind the search form about `app\models\Mantenimiento`.
+ * EquipoSearch represents the model behind the search form about `app\models\Equipo`.
  */
-class MantenimientoSearch extends Mantenimiento
+class EquipoSearch extends Equipo
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class MantenimientoSearch extends Mantenimiento
     public function rules()
     {
         return [
-            [['Id', 'IdUbicacion', 'IdAyudante'], 'integer'],
-            [['Fecha', 'Observacion'], 'safe'],
+            [['Id', 'IdTipo', 'Prestado', 'UbicacionOrigen', 'UbicacionActual'], 'integer'],
+            [['Marca', 'Modelo', 'NoSerie', 'CodInventario', 'Color', 'Estado', 'Descripcion'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class MantenimientoSearch extends Mantenimiento
      */
     public function search($params)
     {
-        $query = Mantenimiento::find();
+        $query = Equipo::find();
 
         // add conditions that should always apply here
 
@@ -60,12 +60,19 @@ class MantenimientoSearch extends Mantenimiento
         // grid filtering conditions
         $query->andFilterWhere([
             'Id' => $this->Id,
-            'IdUbicacion' => $this->IdUbicacion,
-            'IdAyudante' => $this->IdAyudante,
+            'IdTipo' => $this->IdTipo,
+            'Prestado' => $this->Prestado,
+            'UbicacionOrigen' => $this->UbicacionOrigen,
+            'UbicacionActual' => $this->UbicacionActual,
         ]);
 
-        $query->andFilterWhere(['like', 'Fecha', $this->Fecha])
-            ->andFilterWhere(['like', 'Observacion', $this->Observacion]);
+        $query->andFilterWhere(['like', 'Marca', $this->Marca])
+            ->andFilterWhere(['like', 'Modelo', $this->Modelo])
+            ->andFilterWhere(['like', 'NoSerie', $this->NoSerie])
+            ->andFilterWhere(['like', 'CodInventario', $this->CodInventario])
+            ->andFilterWhere(['like', 'Color', $this->Color])
+            ->andFilterWhere(['like', 'Estado', $this->Estado])
+            ->andFilterWhere(['like', 'Descripcion', $this->Descripcion]);
 
         return $dataProvider;
     }

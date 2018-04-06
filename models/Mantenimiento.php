@@ -7,16 +7,13 @@ use Yii;
 /**
  * This is the model class for table "mantenimiento".
  *
- * @property integer $Id_Mantenimiento
- * @property integer $Id_Ubicacion
+ * @property integer $Id
+ * @property integer $IdUbicacion
  * @property string $Fecha
  * @property string $Observacion
- * @property integer $Id_Ayudante
+ * @property integer $IdAyudante
  *
- * @property Ayudantes $idAyudante
- * @property Ubicaciones $idUbicacion
- * @property MovimientosMantenimientos[] $movimientosMantenimientos
- * @property Equipos[] $idEquipos
+ * @property MovimientoMantenimiento[] $movimientoMantenimientos
  */
 class Mantenimiento extends \yii\db\ActiveRecord
 {
@@ -34,11 +31,8 @@ class Mantenimiento extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['Id_Ubicacion', 'Id_Ayudante'], 'integer'],
-            [['Fecha'], 'safe'],
-            [['Observacion'], 'string', 'max' => 400],
-            [['Id_Ayudante'], 'exist', 'skipOnError' => true, 'targetClass' => Ayudantes::className(), 'targetAttribute' => ['Id_Ayudante' => 'Id_Ayudante']],
-            [['Id_Ubicacion'], 'exist', 'skipOnError' => true, 'targetClass' => Ubicaciones::className(), 'targetAttribute' => ['Id_Ubicacion' => 'Id_Ubicacion']],
+            [['IdUbicacion', 'IdAyudante'], 'integer'],
+            [['Fecha', 'Observacion'], 'string', 'max' => 255],
         ];
     }
 
@@ -48,43 +42,19 @@ class Mantenimiento extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'Id_Mantenimiento' => Yii::t('app', 'Id  Mantenimiento'),
-            'Id_Ubicacion' => Yii::t('app', 'Ubicacion'),
+            'Id' => Yii::t('app', 'ID'),
+            'IdUbicacion' => Yii::t('app', 'Id Ubicacion'),
             'Fecha' => Yii::t('app', 'Fecha'),
             'Observacion' => Yii::t('app', 'Observacion'),
-            'Id_Ayudante' => Yii::t('app', 'Ayudante'),
+            'IdAyudante' => Yii::t('app', 'Id Ayudante'),
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getIdAyudante()
+    public function getMovimientoMantenimientos()
     {
-        return $this->hasOne(Ayudantes::className(), ['Id_Ayudante' => 'Id_Ayudante']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getIdUbicacion()
-    {
-        return $this->hasOne(Ubicaciones::className(), ['Id_Ubicacion' => 'Id_Ubicacion']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getMovimientosMantenimientos()
-    {
-        return $this->hasMany(MovimientosMantenimientos::className(), ['Id_Mantenimiento' => 'Id_Mantenimiento']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getIdEquipos()
-    {
-        return $this->hasMany(Equipos::className(), ['Id_Equipo' => 'Id_Equipo'])->viaTable('movimientos_mantenimientos', ['Id_Mantenimiento' => 'Id_Mantenimiento']);
+        return $this->hasMany(MovimientoMantenimiento::className(), ['IdMantenimiento' => 'Id']);
     }
 }
