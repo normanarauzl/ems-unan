@@ -186,7 +186,7 @@ $data = ArrayHelper::map(Equipos::find()->where(['Estado'=>'1'])->all(), 'Id_Equ
     </div>
 
 
-    <br><br>
+    <br>
     <div class="panel panel-primary">
     <table class="table table-bordered table-condensed table-striped">
         <tbody>
