@@ -5,29 +5,31 @@ function SolicitudController($scope, $http)
 
     $scope.add = function()
     {
-        var Id_Equipo = $scope.IdEquipo
-
+        var IdEquipo = $scope.IdEquipo
+        var Descripcion = $('#select2-IdEquipo-container').text()
         var bandera = false
 
         angular.forEach($scope.detalleSolicitud,function (value, key) {
-            if(value.Id_Equipo == Id_Equipo)
+            if(value.IdEquipo == IdEquipo)
             {
                 alertify.error('El equipo ya existe en la lista')
                 bandera = true
             }
         })
-        if (isNaN($scope.IdEquipo))
+
+        if (!isNaN($scope.IdEquipo))
         {
-            alertify.error('Debe seleccionar un profesor de la lista')
+            alertify.error('Debe seleccionar un equipo de la lista')
         }
         else if (!bandera)
         {
             var equipo = {
-                Id_Equipo:Id_Equipo,
+                IdEquipo:IdEquipo,
+                Descripcion:Descripcion,
                 Marca:$scope.Marca,
                 Color:$scope.Color,
                 Modelo:$scope.Modelo,
-                No_Serie:$scope.Serie
+                NoSerie:$scope.NoSerie
             }
 
             $scope.detalleSolicitud.push(equipo)
@@ -40,23 +42,21 @@ function SolicitudController($scope, $http)
 
     $scope.SetEquipo = function()
     {
-        var Id_Equipo = $scope.IdEquipo
-
-
+        var IdEquipo = $scope.IdEquipo
         $http({
             method : 'GET',
             url : 'datos-equipo',
-            params: {Id_Equipo:Id_Equipo},
+            params: {IdEquipo:IdEquipo},
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         }).then(function OnSuccess(response) {
             if(response.data.length == 0)
-                alertify.success('No ha informacion para mostrar')
+                alertify.success('No hay informacion para mostrar')
             else {
-                    $scope.IdEquipo = response.data.Id_Equipo,
+                    $scope.IdEquipo = response.data.IdEquipo,
                     $scope.Marca = response.data.Marca,
                     $scope.Modelo = response.data.Modelo,
                     $scope.Color = response.data.Color,
-                    $scope.Serie = response.data.No_Serie
+                    $scope.NoSerie = response.data.NoSerie
             }
         }, function OnError(response) {
             console.log(response.data)

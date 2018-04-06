@@ -5,7 +5,7 @@ use yii\widgets\ActiveForm;
 use kartik\select2\Select2;
 use yii\helpers\ArrayHelper;
 use app\models\ListaPersonas;
-use app\models\Ubicaciones;
+use app\models\Ubicacion;
 use kartik\time\TimePicker;
 use yii\jui\DatePicker;
 use app\models\Ayudantes;
@@ -18,7 +18,7 @@ use app\models\ListaEquipos;
 /* @var $model app\models\Solicitud */
 /* @var $form yii\widgets\ActiveForm */
 
-$data = ArrayHelper::map(ListaEquipos::find()->where(['Estado'=>'1'])->andWhere(['PermitirUsuario'=>'1'])->all(), 'Id_Equipo', 'Descripcion');
+$data = ArrayHelper::map(ListaEquipos::find()->where(['Estado'=>'1'])->andWhere(['PermitirUsuario'=>'1'])->all(), 'Id', 'Descripcion');
 ?>
 
 <span ng-init='detalleSolicitud = <?= Json::encode($model->detalleSolicituds)?>'></span>
@@ -31,10 +31,10 @@ $data = ArrayHelper::map(ListaEquipos::find()->where(['Estado'=>'1'])->andWhere(
             <label for="">Nombre del Solicitante</label>
             <?=
             Select2::widget([
-                'name' => 'Id_Persona',
+                'name' => 'IdPersona',
                 'model'=>$model,
-                'attribute'=> 'Id_Persona',
-                'data' => ArrayHelper::map(ListaPersonas::find()->asArray()->all(), 'Id', 'NombreCompleto'),
+                'attribute'=> 'IdPersona',
+                'data' => ArrayHelper::map(ListaPersonas::find()->where(['TipoPersona'=>'Profesor'])->andWhere(['Estado'=>'1'])->asArray()->all(), 'Id', 'NombreCompleto'),
                 'options' =>
                     [
                         'multiple' => false,
@@ -47,10 +47,10 @@ $data = ArrayHelper::map(ListaEquipos::find()->where(['Estado'=>'1'])->andWhere(
             <label for="">Ubicación de la solicitud</label>
             <?=
             Select2::widget([
-                'name' => 'Id_Ubicacion',
+                'name' => 'IdUbicacion',
                 'model'=>$model,
-                'attribute'=> 'Id_Ubicacion',
-                'data' => ArrayHelper::map(Ubicaciones::find()->asArray()->all(), 'Id_Ubicacion', 'Descripcion'),
+                'attribute'=> 'IdUbicacion',
+                'data' => ArrayHelper::map(Ubicacion::find()->asArray()->all(), 'Id', 'Descripcion'),
                 'options' =>
                     [
                         'multiple' => false,
@@ -63,9 +63,9 @@ $data = ArrayHelper::map(ListaEquipos::find()->where(['Estado'=>'1'])->andWhere(
             <label for="">Periodo</label>
             <?=
             Select2::widget([
-                'name' => 'Id_Periodo',
+                'name' => 'IdPeriodo',
                 'model'=>$model,
-                'attribute'=> 'Id_Periodo',
+                'attribute'=> 'IdPeriodo',
                 'data' => ArrayHelper::map(ListaPeriodos::find()->asArray()->all(), 'Id', 'DescripcionCompleta'),
                 'options' =>
                     [
@@ -83,7 +83,7 @@ $data = ArrayHelper::map(ListaEquipos::find()->where(['Estado'=>'1'])->andWhere(
             <?=
             DatePicker::widget([
                 'model' => $model,
-                'attribute' => 'Fecha_Inicio',
+                'attribute' => 'FechaInicio',
                 'options' => [
                     'class'=>'form-control',
                     'required'=>true
@@ -99,40 +99,13 @@ $data = ArrayHelper::map(ListaEquipos::find()->where(['Estado'=>'1'])->andWhere(
             <?=
             DatePicker::widget([
                 'model' => $model,
-                'attribute' => 'Fecha_Fin',
+                'attribute' => 'FechaFin',
                 'options' => [
                     'class'=>'form-control',
                     'required'=>true
                 ],
                 'language' => 'es',
                 'dateFormat' => 'php:Y-m-d',
-            ]);
-            ?>
-        </div>
-
-        <div class="col-md-2">
-            <label for="">Hora de Inicio</label>
-            <?=
-            TimePicker::widget([
-                'model' => $model,
-                'attribute' => 'Hora_Inicio',
-                'pluginOptions' => [
-                    'showSeconds' => false,
-                    'required'=>true
-                ]
-            ]);
-            ?>
-        </div>
-        <div class="col-md-2">
-            <label for="">Hora de Fin</label>
-            <?=
-            TimePicker::widget([
-                'model' => $model,
-                'attribute' => 'Hora_Fin',
-                'pluginOptions' => [
-                    'showSeconds' => false,
-                    'required'=>true
-                ]
             ]);
             ?>
         </div>
@@ -154,8 +127,8 @@ $data = ArrayHelper::map(ListaEquipos::find()->where(['Estado'=>'1'])->andWhere(
             <tr>
                 <td>
                     <?= Select2::widget([
-                        'name' => 'Id_Equipo',
-                        'id'=>'Id_Equipo',
+                        'name' => 'IdEquipo',
+                        'id'=>'IdEquipo',
                         'data' => $data,
                         'options' => [
                             'multiple' => false,
@@ -167,12 +140,12 @@ $data = ArrayHelper::map(ListaEquipos::find()->where(['Estado'=>'1'])->andWhere(
                     ?>
                 </td>
 
-                <input type="hidden" name="IdSolicitud" value="<?= $model->Id_Solicitud?>">
+                <input type="hidden" name="IdSolicitud" value="<?= $model->Id?>">
                 <input type="hidden" ng-model="IdEquipo">
                 <td><input type="text" class="form-control" ng-model="Marca" readonly required></td>
                 <td><input type="text" class="form-control" ng-model="Modelo" readonly required></td>
                 <td><input type="text" class="form-control" ng-model="Color" readonly required></td>
-                <td><input type="text" class="form-control" ng-model="Serie" readonly required></td>
+                <td><input type="text" class="form-control" ng-model="NoSerie" readonly required></td>
                 <td><button type="button" ng-click="add()" class='btn btn-success'><i class="glyphicon glyphicon-plus"></i></button></td>
                 <input type="hidden" name="detalleSolicitud" ng-model="detalleSolicitud" value="{{detalleSolicitud}}">
             </tr>
@@ -196,12 +169,12 @@ $data = ArrayHelper::map(ListaEquipos::find()->where(['Estado'=>'1'])->andWhere(
             </tr>
             </thead>
             <tr ng-repeat="equipo in detalleSolicitud track by $index">
-                <td hidden ng-model="invitacion.Id">{{equipo.Id}}</td>
-                <td ng-model="equipo.Id_Equipo">{{equipo.Id_Equipo}}</td>
+                <td hidden ng-model="equipo.IdEquipo">{{equipo.IdEquipo}}</td>
+                <td ng-model="equipo.Descripcion">{{equipo.Descripcion}}</td>
                 <td ng-model="equipo.Marca">{{equipo.Marca}}</td>
                 <td ng-model="equipo.Color">{{equipo.Color}}</td>
                 <td ng-model="equipo.Modelo">{{equipo.Modelo}}</td>
-                <td ng-model="equipo.No_Serie">{{equipo.No_Serie}}</td>
+                <td ng-model="equipo.NoSerie">{{equipo.NoSerie}}</td>
                 <td>
                     <button type="button" ng-click="del($index)" title='Borrar' class='btn btn-danger'><i class="glyphicon glyphicon-minus"></i></button>
                 </td>
@@ -214,10 +187,10 @@ $data = ArrayHelper::map(ListaEquipos::find()->where(['Estado'=>'1'])->andWhere(
             <label for="">Entregado por</label>
             <?=
             Select2::widget([
-                'name' => 'Entregado_Por',
+                'name' => 'EntregadoPor',
                 'model'=>$model,
-                'attribute'=> 'Entregado_Por',
-                'data' => ArrayHelper::map(Ayudantes::find()->where(['Estado_Ayudante'=>'1'])->asArray()->all(), 'Id_Ayudante', 'Nombre_Ayudante'),
+                'attribute'=> 'EntregadoPor',
+                'data' => ArrayHelper::map(ListaPersonas::find()->where(['TipoPersona'=>'Ayudante'])->andWhere(['Estado'=>'1'])->asArray()->all(), 'Id', 'NombreCompleto'),
                 'options' =>
                     [
                         'multiple' => false,
@@ -230,10 +203,10 @@ $data = ArrayHelper::map(ListaEquipos::find()->where(['Estado'=>'1'])->andWhere(
             <label for="">Retirado por</label>
             <?=
             Select2::widget([
-                'name' => 'Retirado_Por',
+                'name' => 'RetiradoPor',
                 'model'=>$model,
-                'attribute'=> 'Retirado_Por',
-                'data' => ArrayHelper::map(Ayudantes::find()->where(['Estado_Ayudante'=>'1'])->asArray()->all(), 'Id_Ayudante', 'Nombre_Ayudante'),
+                'attribute'=> 'RetiradoPor',
+                'data' => ArrayHelper::map(ListaPersonas::find()->where(['TipoPersona'=>'Ayudante'])->andWhere(['Estado'=>'1'])->asArray()->all(), 'Id', 'NombreCompleto'),
                 'options' =>
                     [
                         'multiple' => false,
@@ -244,7 +217,7 @@ $data = ArrayHelper::map(ListaEquipos::find()->where(['Estado'=>'1'])->andWhere(
         </div>
     </div>
     <br>
-    <?= $form->field($model, 'Observaciones')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'Observacion1')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Crear' : 'Actualizar', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
