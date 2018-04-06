@@ -4,13 +4,11 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use kartik\select2\Select2;
 use yii\helpers\ArrayHelper;
-use app\models\ListaPersonas;
+use app\models\Personas;
 use app\models\Ubicacion;
 use kartik\time\TimePicker;
 use yii\jui\DatePicker;
-use app\models\Ayudantes;
 use app\models\ListaPeriodos;
-use app\models\Equipos;
 use yii\helpers\Json;
 use yii\db\Query;
 use app\models\ListaEquipos;
@@ -34,7 +32,7 @@ $data = ArrayHelper::map(ListaEquipos::find()->where(['Estado'=>'1'])->andWhere(
                 'name' => 'IdPersona',
                 'model'=>$model,
                 'attribute'=> 'IdPersona',
-                'data' => ArrayHelper::map(ListaPersonas::find()->where(['TipoPersona'=>'Profesor'])->andWhere(['Estado'=>'1'])->asArray()->all(), 'Id', 'NombreCompleto'),
+                'data' => ArrayHelper::map(Personas::find()->where(['TipoPersona'=>'Docente'])->andWhere(['Estado'=>'1'])->asArray()->all(), 'Id', 'NombreCompleto'),
                 'options' =>
                     [
                         'multiple' => false,
@@ -190,7 +188,7 @@ $data = ArrayHelper::map(ListaEquipos::find()->where(['Estado'=>'1'])->andWhere(
                 'name' => 'EntregadoPor',
                 'model'=>$model,
                 'attribute'=> 'EntregadoPor',
-                'data' => ArrayHelper::map(ListaPersonas::find()->where(['TipoPersona'=>'Ayudante'])->andWhere(['Estado'=>'1'])->asArray()->all(), 'Id', 'NombreCompleto'),
+                'data' => ArrayHelper::map(Personas::find()->where(['TipoPersona'=>'Ayudante'])->andWhere(['Estado'=>'1'])->asArray()->all(), 'Id', 'NombreCompleto'),
                 'options' =>
                     [
                         'multiple' => false,
@@ -206,7 +204,7 @@ $data = ArrayHelper::map(ListaEquipos::find()->where(['Estado'=>'1'])->andWhere(
                 'name' => 'RetiradoPor',
                 'model'=>$model,
                 'attribute'=> 'RetiradoPor',
-                'data' => ArrayHelper::map(ListaPersonas::find()->where(['TipoPersona'=>'Ayudante'])->andWhere(['Estado'=>'1'])->asArray()->all(), 'Id', 'NombreCompleto'),
+                'data' => ArrayHelper::map(Personas::find()->where(['TipoPersona'=>'Ayudante'])->andWhere(['Estado'=>'1'])->asArray()->all(), 'Id', 'NombreCompleto'),
                 'options' =>
                     [
                         'multiple' => false,
