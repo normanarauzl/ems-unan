@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50718
 File Encoding         : 65001
 
-Date: 2018-04-06 11:41:35
+Date: 2018-04-06 20:53:44
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -483,11 +483,14 @@ CREATE TABLE `tipo_persona` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `Descripcion` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tipo_persona
 -- ----------------------------
+INSERT INTO `tipo_persona` VALUES ('1', 'Docente');
+INSERT INTO `tipo_persona` VALUES ('2', 'Ayudante');
+INSERT INTO `tipo_persona` VALUES ('3', 'Administrativo');
 
 -- ----------------------------
 -- Table structure for `token`
@@ -579,7 +582,7 @@ DROP VIEW IF EXISTS `lista_periodos`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `lista_periodos` AS select `periodo`.`Id` AS `Id`,concat(`periodo`.`HoriaInicio`,`periodo`.`HoraFin`,`periodo`.`Descripcion`,`periodo`.`IdTurno`) AS `DescripcionCompleta` from `periodo` ;
 
 -- ----------------------------
--- View structure for `lista_personas`
+-- View structure for `personas`
 -- ----------------------------
-DROP VIEW IF EXISTS `lista_personas`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `lista_personas` AS select `persona`.`Id` AS `Id`,concat(`persona`.`Nombres`,`persona`.`Apellidos`) AS `NombreCompleto`,`tipo_persona`.`Descripcion` AS `TipoPersona`,`persona`.`Estado` AS `Estado` from (`tipo_persona` join `persona`) where (`persona`.`IdTipo` = `tipo_persona`.`Id`) ;
+DROP VIEW IF EXISTS `personas`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `personas` AS select `persona`.`Id` AS `Id`,concat(`persona`.`Nombres`,`persona`.`Apellidos`) AS `NombreCompleto`,`tipo_persona`.`Descripcion` AS `TipoPersona`,`persona`.`Estado` AS `Estado` from (`tipo_persona` join `persona`) where (`persona`.`IdTipo` = `tipo_persona`.`Id`) ;
