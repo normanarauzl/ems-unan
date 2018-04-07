@@ -47,12 +47,12 @@ class Periodo extends \yii\db\ActiveRecord
     {
         return [
             'Id' => Yii::t('app', 'ID'),
-            'DuracionMinutos' => Yii::t('app', 'Duracion Minutos'),
+            'DuracionMinutos' => Yii::t('app', 'Duracion (Minutos)'),
             'Descripcion' => Yii::t('app', 'Descripcion'),
-            'HoriaInicio' => Yii::t('app', 'Horia Inicio'),
-            'HoraFin' => Yii::t('app', 'Hora Fin'),
+            'HoriaInicio' => Yii::t('app', 'Horia de Inicio'),
+            'HoraFin' => Yii::t('app', 'Hora de Fin'),
             'Estado' => Yii::t('app', 'Estado'),
-            'IdTurno' => Yii::t('app', 'Id Turno'),
+            'IdTurno' => Yii::t('app', 'Turno'),
         ];
     }
 

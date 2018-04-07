@@ -39,7 +39,7 @@ class TipoPersona extends \yii\db\ActiveRecord
     {
         return [
             'Id' => Yii::t('app', 'ID'),
-            'Descripcion' => Yii::t('app', 'Descripcion'),
+            'Descripcion' => Yii::t('app', 'Descripcion (Rol en el sistema)'),
         ];
     }
 
