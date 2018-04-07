@@ -76,9 +76,14 @@ class PersonaController extends Controller
         }
     }
 
-    private function createUser()
+    private function UpdateUser($post, $user)
     {
-
+        $user->attributes = $post['User'];
+        $user->password_hash = Password::hash($user->password);
+        $user->flags = 0;
+        $user->confirmed_at = strtotime(date('Y-m-d'));
+        $user->save();
+        return $user->id;
     }
 
     public function actionCreate()
@@ -89,13 +94,8 @@ class PersonaController extends Controller
         if ((Yii::$app->request->post())) {
 
             $post = Yii::$app->request->post();
-            $user->attributes = $post['User'];
-            $user->password_hash = Password::hash($user->password);
-            $user->flags = 0;
-            $user->confirmed_at = strtotime(date('Y-m-d'));
-            $user->save();
             $model->attributes = $post['Persona'];
-            $model->IdUsuario = $user->id;
+            $model->IdUsuario = $this->UpdateUser($post, $user);
             $model->save();
             return $this->redirect(['view', 'id' => $model->Id]);
         } else {
@@ -114,12 +114,17 @@ class PersonaController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $user = User::findOne($model->IdUsuario);
+        if ((Yii::$app->request->post())) {
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $post = Yii::$app->request->post();
+            $model->attributes = $post['Persona'];
+            $model->IdUsuario = $this->UpdateUser($post, $user);
+            $model->save();
             return $this->redirect(['view', 'id' => $model->Id]);
         } else {
             return $this->render('update', [
-                'model' => $model,
+                'model' => $model, 'user'=>$user
             ]);
         }
     }

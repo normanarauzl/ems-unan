@@ -70,8 +70,7 @@ use yii\helpers\Url;
                             'icon' => 'fa fa-users',
                             'url' => '#',
                             'items' => [
-                                ['label' => 'Docentes', 'icon' => 'fa fa-user', 'url' => ['/persona/index'],],
-                                ['label' => 'Ayudantes', 'icon' => 'fa fa-user', 'url' => ['/persona/index'],],
+                                ['label' => 'Personas', 'icon' => 'fa fa-user', 'url' => ['/persona/index'],],
                                 ['label' => 'Tipos de Personas', 'icon' => 'fa fa-key', 'url' => ['/tipo-persona/index'],]
                             ]
                         ],
