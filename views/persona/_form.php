@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Persona */
@@ -10,7 +11,10 @@ use yii\widgets\ActiveForm;
 
 <div class="persona-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['id'=>$model->formName(),
+                                     'enableAjaxValidation'=>true,
+                                     'validationUrl'=>Url::toRoute('persona/validation')
+        ]); ?>
 
     <div class="alert alert-success">
         Información personal

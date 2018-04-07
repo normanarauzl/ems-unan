@@ -45,10 +45,10 @@ $config = [
 //            'enableAutoLogin' => true,
 //        ],
         'user' => [
-            'class' => 'yii\web\User',
+            //'class' => 'yii\web\User',
             'identityClass' => 'dektrium\user\models\User',
             //'enableAutoLogin' => true,
-            'loginUrl' => ['user/login']
+            'loginUrl' => ['admin/user/login']
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',

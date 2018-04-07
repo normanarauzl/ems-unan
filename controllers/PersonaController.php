@@ -5,11 +5,13 @@ namespace app\controllers;
 use Yii;
 use app\models\Persona;
 use app\models\PersonaSearch;
+use yii\helpers\VarDumper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-//use app\models\User;
 use dektrium\user\models\User;
+use yii\widgets\ActiveForm;
+use dektrium\user\helpers\Password;
 
 /**
  * PersonaController implements the CRUD actions for Persona model.
@@ -63,12 +65,38 @@ class PersonaController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
+
+    public function actionValidation()
+    {
+        $user = new User;
+        if (Yii::$app->request->isAjax && $user->load(Yii::$app->request->post()))
+        {
+            Yii::$app->response->format = 'json';
+            return ActiveForm::validate($user);
+        }
+    }
+
+    private function createUser()
+    {
+
+    }
+
     public function actionCreate()
     {
         $model = new Persona();
         $user = new User();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ((Yii::$app->request->post())) {
+
+            $post = Yii::$app->request->post();
+            $user->attributes = $post['User'];
+            $user->password_hash = Password::hash($user->password);
+            $user->flags = 0;
+            $user->confirmed_at = strtotime(date('Y-m-d'));
+            $user->save();
+            $model->attributes = $post['Persona'];
+            $model->IdUsuario = $user->id;
+            $model->save();
             return $this->redirect(['view', 'id' => $model->Id]);
         } else {
             return $this->render('create', [
