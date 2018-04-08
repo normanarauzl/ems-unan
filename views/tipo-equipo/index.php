@@ -7,7 +7,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel app\models\TipoEquipoSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Tipo Equipos');
+$this->title = Yii::t('app', 'Tipos de Equipos');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="tipo-equipo-index">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create Tipo Equipo'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Crear Tipo de Equipo'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 <?php Pjax::begin(); ?>    <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -24,9 +24,16 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'Id',
+//            'Id',
             'Descripcion',
-            'PermitirUsuario',
+//            'PermitirUsuario',
+            [
+            'attribute' => 'PermitirUsuario',
+            'value' => function ($model) {
+                 return $model->PermitirUsuario == 1 ? 'Si' : 'No';
+            },
+            ],
+            
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
