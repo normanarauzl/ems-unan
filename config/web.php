@@ -15,7 +15,7 @@ $config = [
         ],
         'admin' => [
             'class' => 'mdm\admin\Module',
-            'layout' => 'left-menu', // it can be '@path/to/your/layout'.
+            'layout' => 'left-menu',
             'controllerMap' => [
                 'assignment' => [
                     'class' => 'mdm\admin\controllers\AssignmentController',
@@ -30,24 +30,16 @@ $config = [
     'bootstrap' => ['log'],
     'components' => [
         'authManager' => [
-            //'class' => 'yii\rbac\PhpManager', // or use 'yii\rbac\DbManager'
-            'class' => 'yii\rbac\DbManager', // or use 'yii\rbac\PhpManager'
+            'class' => 'yii\rbac\DbManager',
         ],
         'request' => [
-            // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'Qs55LE7tpwKjvLv4A1iqPB9ZP77W6Y2y',
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
-//        'user' => [
-//            'identityClass' => 'app\models\User',
-//            'enableAutoLogin' => true,
-//        ],
         'user' => [
-            //'class' => 'yii\web\User',
             'identityClass' => 'dektrium\user\models\User',
-            //'enableAutoLogin' => true,
             'loginUrl' => ['admin/user/login']
         ],
         'errorHandler' => [
@@ -55,9 +47,6 @@ $config = [
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
-            // send all mails to a file by default. You have to set
-            // 'useFileTransport' to false and configure a transport
-            // for the mailer to send real emails.
             'useFileTransport' => true,
         ],
         'log' => [
@@ -79,6 +68,7 @@ $config = [
 
     ],
     'params' => $params,
+    'defaultRoute' => 'site/login',
     'as access' => [
         'class' => 'mdm\admin\components\AccessControl',
         'allowActions' => [

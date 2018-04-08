@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50718
 File Encoding         : 65001
 
-Date: 2018-04-06 20:53:44
+Date: 2018-04-07 20:25:28
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -370,15 +370,19 @@ CREATE TABLE `persona` (
   `IdTipo` int(11) DEFAULT NULL,
   `IdUsuario` int(11) DEFAULT NULL,
   PRIMARY KEY (`Id`),
-  UNIQUE KEY `IdTipoPersona_Index` (`IdTipo`),
   UNIQUE KEY `IdUsuario_Index` (`IdUsuario`),
+  KEY `IdTipoPersona_Index` (`IdTipo`) USING BTREE,
   CONSTRAINT `IdTipoPersona_PFK` FOREIGN KEY (`IdTipo`) REFERENCES `tipo_persona` (`Id`),
   CONSTRAINT `IdUsuario_UFK` FOREIGN KEY (`IdUsuario`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of persona
 -- ----------------------------
+INSERT INTO `persona` VALUES ('1', 'Norman', 'Arauz', '441-191288-0005R', '57108367', '1', '1', '2');
+INSERT INTO `persona` VALUES ('2', 'Marianela', 'Ortuño', '441-787878-005A', '44578996', null, '1', '3');
+INSERT INTO `persona` VALUES ('3', 'Ramiro', 'Contreras', '441-787878-0059', '564478', null, '1', '4');
+INSERT INTO `persona` VALUES ('4', 'Ricardo', 'Ramirez', '441-787878-0025E', '12332546', null, '1', '6');
 
 -- ----------------------------
 -- Table structure for `profile`
@@ -396,12 +400,17 @@ CREATE TABLE `profile` (
   `timezone` varchar(40) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`user_id`),
   CONSTRAINT `profile_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of profile
 -- ----------------------------
 INSERT INTO `profile` VALUES ('1', 'Norman Salvador Arauz Lopez', '', '', 'd41d8cd98f00b204e9800998ecf8427e', '', '', '', null);
+INSERT INTO `profile` VALUES ('2', null, null, null, null, null, null, null, null);
+INSERT INTO `profile` VALUES ('3', null, null, null, null, null, null, null, null);
+INSERT INTO `profile` VALUES ('4', null, null, null, null, null, null, null, null);
+INSERT INTO `profile` VALUES ('5', null, null, null, null, null, null, null, null);
+INSERT INTO `profile` VALUES ('6', null, null, null, null, null, null, null, null);
 
 -- ----------------------------
 -- Table structure for `social_account`
@@ -508,6 +517,7 @@ CREATE TABLE `token` (
 -- ----------------------------
 -- Records of token
 -- ----------------------------
+INSERT INTO `token` VALUES ('5', 'O00_XczyWPpWM-ss97THw1wpd7Xvcr3m', '1523140613', '0');
 
 -- ----------------------------
 -- Table structure for `turno`
@@ -562,12 +572,17 @@ CREATE TABLE `user` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_unique_username` (`username`) USING BTREE,
   UNIQUE KEY `user_unique_email` (`email`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
 INSERT INTO `user` VALUES ('1', 'admin', 'admin@sistema.com', '$2y$10$vy7NbA06xq2z9audQM5l6OMWgIHLXpTIH.rbBHA3pk5NnJwRU8KZu', 'yzUH8bU5cnL2B9hHHe9Xl86iZGM35YPA', '1502235895', null, null, '127.0.0.1', '1502235382', '1502235382', '0', '10', null);
+INSERT INTO `user` VALUES ('2', 'netman', 'netman.arauz@gmail.com', '$2y$10$6y6X/hOWzm5LhSIdRVwAme9n8OjvPl0Ru6lTqCo9.hMwIz614vOxm', '6BvV6YbvO3aP1Y4Gwd2-nlqOnYn7UY0Y', '1523080800', null, '1523137134', '127.0.0.1', '1523131674', '1523131674', '0', '10', null);
+INSERT INTO `user` VALUES ('3', 'marianela', 'marianela@gmail.com', '$2y$10$5BBEKoDdxoZTTxTbtpxoi.4a9zM4PowZIzjorePo3TXemvvFv38qK', 'xuz4ps1Fi77mGS_dxkleqOAewaF82YDf', null, null, null, '127.0.0.1', '1523137168', '1523137168', '0', '10', null);
+INSERT INTO `user` VALUES ('4', 'ramiro', 'ramiro@yahoo.es', '$2y$10$PUqe2GNHr9NErb5lLAZxNeHrSORkU3TxH7hpluuFHTuiT3Am1Wd36', 'zFJ_WoNhPxNh_mLDluioqxij3t_unkuX', null, null, null, '127.0.0.1', '1523138707', '1523138707', '0', '10', null);
+INSERT INTO `user` VALUES ('5', 'vaneza', 'vaneza@yahoo.es', '$2y$10$7Im8F0cwphxhXKgesRwLMOm0ODp2RpoCuK2ps2G6sJakAyUVyhrVe', 'S0SyTURopE5cWHUHmocB4PgH_PiFEhun', null, null, null, '127.0.0.1', '1523140613', '1523140613', '0', '10', null);
+INSERT INTO `user` VALUES ('6', 'ricardo12', 'ricardoa@gmail.com', '$2y$10$LA3f1xGoTnrEk5GC.rYO8eWFa03cRUadwSq/TVFu3vLqH1uKUaxaC', 'KJqAqkm6I9h9MpTR6q9V1BXQyShpyvXk', null, null, null, '127.0.0.1', '1523143437', '1523143437', '0', '10', null);
 
 -- ----------------------------
 -- View structure for `lista_equipos`

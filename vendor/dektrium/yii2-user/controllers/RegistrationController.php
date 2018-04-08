@@ -18,8 +18,12 @@ use dektrium\user\models\User;
 use dektrium\user\traits\AjaxValidationTrait;
 use dektrium\user\traits\EventTrait;
 use yii\filters\AccessControl;
+use yii\helpers\VarDumper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use app\models\Persona;
+use dektrium\user\helpers\Password;
+use app\models\TipoPersona;
 
 /**
  * RegistrationController is responsible for all registration process, which includes registration of a new account,
@@ -119,21 +123,41 @@ class RegistrationController extends Controller
      * @return string
      * @throws \yii\web\HttpException
      */
+
+    private function UpdateUser($post, $user)
+    {
+        $user->attributes = $post['User'];
+        $user->password_hash = Password::hash($user->password);
+        $user->flags = 0;
+        $user->save();
+        return $user->id;
+    }
+
     public function actionRegister()
     {
+        $persona = new Persona();
+
         if (!$this->module->enableRegistration) {
             throw new NotFoundHttpException();
         }
 
         /** @var RegistrationForm $model */
-        $model = \Yii::createObject(RegistrationForm::className());
+        $model = new User();
         $event = $this->getFormEvent($model);
 
         $this->trigger(self::EVENT_BEFORE_REGISTER, $event);
 
         $this->performAjaxValidation($model);
+        //VarDumper::dump($model,10, true); exit();
+        if ($model->load(\Yii::$app->request->post())) {
 
-        if ($model->load(\Yii::$app->request->post()) && $model->register()) {
+            $post = \Yii::$app->request->post();
+            $persona->attributes = $post['Persona'];
+            $persona->IdUsuario = $this->UpdateUser($post,$model);
+            $persona->IdTipo = TipoPersona::findOne(['Descripcion'=>'Docente'])->Id;
+            $persona->save();
+
+            //$persona->IdUsuario = $model->id
             $this->trigger(self::EVENT_AFTER_REGISTER, $event);
 
             return $this->render('/message', [
@@ -145,6 +169,7 @@ class RegistrationController extends Controller
         return $this->render('register', [
             'model'  => $model,
             'module' => $this->module,
+            'persona'=>$persona
         ]);
     }
 

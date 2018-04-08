@@ -38,7 +38,6 @@ class Persona extends \yii\db\ActiveRecord
         return [
             [['IdTipo', 'IdUsuario'], 'integer'],
             [['Nombres', 'Apellidos', 'Cedula', 'Telefono', 'Estado'], 'string', 'max' => 255],
-            [['IdTipo'], 'unique'],
             [['IdUsuario'], 'unique'],
             [['IdTipo'], 'exist', 'skipOnError' => true, 'targetClass' => TipoPersona::className(), 'targetAttribute' => ['IdTipo' => 'Id']],
             [['IdUsuario'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['IdUsuario' => 'id']],

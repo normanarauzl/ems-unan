@@ -43,13 +43,13 @@ class Module extends BaseModule
     public $enableGeneratingPassword = false;
 
     /** @var bool Whether user has to confirm his account. */
-    public $enableConfirmation = true;
+    public $enableConfirmation = false;
 
     /** @var bool Whether to allow logging in without confirmation. */
     public $enableUnconfirmedLogin = false;
 
     /** @var bool Whether to enable password recovery. */
-    public $enablePasswordRecovery = true;
+    public $enablePasswordRecovery = false;
 
     /** @var bool Whether user can remove his account */
     public $enableAccountDelete = false;

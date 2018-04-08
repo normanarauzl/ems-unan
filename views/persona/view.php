@@ -6,37 +6,14 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Persona */
 
-$this->title = $model->Id;
-$this->params['breadcrumbs'][] = ['label' => 'Personas', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'Registro Completado con Éxito';
 ?>
 <div class="persona-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->Id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->Id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
-
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'Id',
-            'Nombres',
-            'Apellidos',
-            'Cedula',
-            'Telefono',
-            'Estado',
-            'IdTipo',
-            'IdUsuario',
-        ],
-    ]) ?>
-
+    <div class="alert alert-success">
+        El administrador del sitio se pondrá en contacto con usted para confirmar sus credenciales
+    </div>
+    <div class="text-center">
+        <?= Html::a('Regresar al Inicio', ['/site/index'], ['class'=>'btn btn-primary']) ?>
+    </div>
 </div>

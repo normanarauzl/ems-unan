@@ -19,17 +19,6 @@ use yii\helpers\Url;
                 <a href="#"><i class="fa fa-circle text-success"></i> En línea</a>
             </div>
         </div>
-<!--         search form 
-        <form action="#" method="get" class="sidebar-form">
-            <div class="input-group">
-                <input type="text" name="q" class="form-control" placeholder="Search...">
-                <span class="input-group-btn">
-                    <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
-                </span>
-            </div>
-        </form>-->
-        <!-- /.search form -->
-        <!-- sidebar menu: : style can be found in sidebar.less -->
         <?=
         Menu::widget(
                 [
@@ -39,44 +28,27 @@ use yii\helpers\Url;
                         ['label' => 'Inicio', 'icon' => 'fa fa-gg', 
                             'url' => ['/'], 'active' => $this->context->route == 'site/index'
                         ],
-//                        [
-//                            'label' => 'Master',
-//                            'icon' => 'fa fa-database',
-//                            'url' => '#',
-//                            'items' => [
-//                                [
-//                                    'label' => 'Master1',
-//                                    'icon' => 'fa fa-database',
-//                                    'url' => '?r=master1/',
-//				    'active' => $this->context->route == 'master1/index'
-//                                ],
-//                                [
-//                                    'label' => 'Master2',
-//                                    'icon' => 'fa fa-database',
-//                                    'url' => '?r=master2/',
-//				    'active' => $this->context->route == 'master2/index'
-//                                ]
-//                            ]
-//                        ],
-//                        [
-//                            'label' => 'Users',
-//                            'icon' => 'fa fa-users',
-//                            'url' => ['/user'],
-//                            'active' => $this->context->route == 'user/index',
-//                        ],
-                       
                         [
                             'label' => 'Personas',
                             'icon' => 'fa fa-users',
                             'url' => '#',
                             'items' => [
-                                ['label' => 'Personas', 'icon' => 'fa fa-user', 'url' => ['/persona/index'],],
-                                ['label' => 'Tipos de Personas', 'icon' => 'fa fa-key', 'url' => ['/tipo-persona/index'],]
-                            ]
+                                ['label' => 'Lista de personas', 'icon' => 'fa fa-list-ol', 'url' => ['/persona/index'],],
+                                ['label' => 'Tipos de Personas', 'icon' => 'fa fa-sitemap', 'url' => ['/tipo-persona/index'],],
+                                ['label' => 'Administración de Usuarios', 'icon' => 'fa fa-user', 'url' => ['/user/admin'],],
+                                ['label' => 'Asignacion de permisos', 'icon' => 'fa fa-key', 'url' => ['/admin/user'],]
+                            ],
+                            'visible'=>!Yii::$app->user->isGuest
                         ],
-                        ['label' => 'Mantenimientos', 'icon' => 'fa fa-ambulance', 'url' => ['/mantenimiento/index'],],
-                        ['label' => 'Ubicaciones', 'icon' => 'fa fa-compass', 'url' => ['/ubicacion/index'],],
-                        ['label' => 'Prestamos', 'icon' => 'fa fa-sliders', 'url' => ['/prestamos/index'],],
+                        ['label' => 'Mantenimientos', 'icon' => 'fa fa-ambulance', 'url' => ['/mantenimiento/index'],
+                            'visible'=>!Yii::$app->user->isGuest
+                            ],
+                        ['label' => 'Ubicaciones', 'icon' => 'fa fa-compass', 'url' => ['/ubicacion/index'],
+                            'visible'=>!Yii::$app->user->isGuest
+                            ],
+                        ['label' => 'Prestamos', 'icon' => 'fa fa-sliders', 'url' => ['/prestamos/index'],
+                            'visible'=>!Yii::$app->user->isGuest
+                            ],
                         [
                             'label' => 'Equipos',
                             'icon' => 'fa fa-file-video-o',
@@ -84,7 +56,8 @@ use yii\helpers\Url;
                             'items' => [
                                 ['label' => 'Equipos', 'icon' => 'fa fa-video-camera', 'url' => ['/equipo/index'],],
                                 ['label' => 'Tipos de equipos', 'icon' => 'fa fa-connectdevelop', 'url' => ['/tipo-equipo/index'],]
-                            ]
+                            ],
+                            'visible'=>!Yii::$app->user->isGuest
                         ],
                         [
                             'label' => 'Horarios',
@@ -93,11 +66,18 @@ use yii\helpers\Url;
                             'items' => [
                                 ['label' => 'Turnos', 'icon' => 'fa fa-edit', 'url' => ['/turno/index'],],
                                 ['label' => 'Periodos', 'icon' => 'fa fa-calendar', 'url' => ['/periodo/index'],]
-                            ]
+                            ],
+                            'visible'=>!Yii::$app->user->isGuest
                         ],
-                        ['label' => 'Solicitudes', 'icon' => 'fa fa-hand-paper-o', 'url' => ['/solicitud/index'],],
-                        ['label' => 'Gii', 'icon' => 'fa fa-file-code-o', 'url' => ['/gii'],],
-                        ['label' => 'Debug', 'icon' => 'fa fa-dashboard', 'url' => ['/debug'],],
+                        ['label' => 'Solicitudes', 'icon' => 'fa fa-hand-paper-o', 'url' => ['/solicitud/index'],
+                            'visible'=>!Yii::$app->user->isGuest
+                            ],
+                        ['label' => 'Gii', 'icon' => 'fa fa-file-code-o', 'url' => ['/gii'],
+                            'visible'=>!Yii::$app->user->isGuest
+                            ],
+                        ['label' => 'Debug', 'icon' => 'fa fa-dashboard', 'url' => ['/debug'],
+                            'visible'=>!Yii::$app->user->isGuest
+                            ],
                         
                     ],
                 ]

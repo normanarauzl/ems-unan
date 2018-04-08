@@ -33,12 +33,6 @@ use yii\helpers\Url;
         <div class="col-md-2">
             <?= $form->field($model, 'Telefono')->textInput(['maxlength' => true, 'required'=>true]) ?>
         </div>
-        <div class="col-md-2">
-            <?= $form->field($model, 'Estado')->dropDownList(['1' => 'Activo', '2' => 'Inactivo']) ?>
-        </div>
-        <div class="col-md-2">
-            <?= $form->field($model, 'IdTipo')->dropDownList(['1' => 'Docente', '2' => 'Ayudante']) ?>
-        </div>
     </div>
 
     <div class="alert alert-success">
@@ -47,20 +41,20 @@ use yii\helpers\Url;
 
     <div class="row">
         <div class="col-md-3">
-            <?= $form->field($user, 'email')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($user, 'email')->textInput(['maxlength' => true, 'required'=>true]) ?>
         </div>
         <div class="col-md-3">
-            <?= $form->field($user, 'username')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($user, 'username')->textInput(['maxlength' => true, 'required'=>true]) ?>
         </div>
         <div class="col-md-3">
-            <?= $form->field($user, 'password')->passwordInput() ?>
+            <?= $form->field($user, 'password')->passwordInput(['required'=>true]) ?>
         </div>
     </div>
 
     <br>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'Crear' : 'Actualizar', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

@@ -12,6 +12,7 @@ use yii\filters\VerbFilter;
 use dektrium\user\models\User;
 use yii\widgets\ActiveForm;
 use dektrium\user\helpers\Password;
+use app\models\TipoPersona;
 
 /**
  * PersonaController implements the CRUD actions for Persona model.
@@ -81,7 +82,6 @@ class PersonaController extends Controller
         $user->attributes = $post['User'];
         $user->password_hash = Password::hash($user->password);
         $user->flags = 0;
-        $user->confirmed_at = strtotime(date('Y-m-d'));
         $user->save();
         return $user->id;
     }
@@ -96,6 +96,7 @@ class PersonaController extends Controller
             $post = Yii::$app->request->post();
             $model->attributes = $post['Persona'];
             $model->IdUsuario = $this->UpdateUser($post, $user);
+            $model->IdTipo = TipoPersona::findOne(['Descripcion'=>'Docente'])->Id;
             $model->save();
             return $this->redirect(['view', 'id' => $model->Id]);
         } else {
