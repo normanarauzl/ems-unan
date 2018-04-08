@@ -29,14 +29,21 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
 //            'Id',
-            'IdTipo',
+//            'IdTipo',
+            'idTipo.Descripcion:text:Tipo',
             'Prestado',
             'Marca',
             'Modelo',
             'NoSerie',
             'CodInventario',
             'Color',
-            'Estado',
+//            'Estado',
+            [
+            'attribute' => 'Estado',
+            'value' => function ($model) {
+                 return $model->Estado == 1 ? 'Bueno' : 'Malo';
+            },
+            ],
             'Descripcion',
             'UbicacionOrigen',
             'UbicacionActual',

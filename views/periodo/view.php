@@ -33,8 +33,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'Descripcion',
             'HoriaInicio',
             'HoraFin',
-            'Estado',
-            'IdTurno',
+//            'Estado',
+            [
+             'attribute' => 'Estado',
+             'value' => 1 ? 'Activo' : 'Inactivo',
+            ],
+//            'IdTurno',
+            'idTurno.Descripcion:text:Turno',
         ],
     ]) ?>
 

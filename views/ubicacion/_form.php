@@ -15,8 +15,8 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'Descripcion')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'Estado')->dropDownList(['1' => 'Activo', '2' => 'Inactivo']) ?>
-
-    <?= $form->field($model, 'Clasificacion')->textInput() ?>
+    
+    <?= $form->field($model, 'Clasificacion')->dropDownList(['1' => 'Oficina', '2' => 'Mantenimiento', '3' => 'Aulas', '4' => 'Salas/Auditorios']) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Crear') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
