@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
+use app\models\Turno;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Periodo */
@@ -22,7 +24,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'Estado')->dropDownList(['1' => 'Activo', '2' => 'Inactivo']) ?>
 
-    <?= $form->field($model, 'IdTurno')->textInput() ?>
+    <?= $form->field($model, 'IdTurno')->dropDownList(ArrayHelper::map(Turno::find()->select(['Descripcion','Id'])->all(), 'Id', 'Descripcion'),['class' => 'form-control inline-block'],['prompt'=>'Seleccione la ubicación']); ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Crear') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
