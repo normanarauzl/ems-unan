@@ -16,8 +16,8 @@ function SolicitudController($scope, $http)
                 bandera = true
             }
         })
-
-        if (!isNaN($scope.IdEquipo))
+        
+        if (isNaN(IdEquipo))
         {
             alertify.error('Debe seleccionar un equipo de la lista')
         }
@@ -52,7 +52,7 @@ function SolicitudController($scope, $http)
             if(response.data.length == 0)
                 alertify.success('No hay informacion para mostrar')
             else {
-                    $scope.IdEquipo = response.data.IdEquipo,
+                $scope.IdEquipo = response.data.IdEquipo,
                     $scope.Marca = response.data.Marca,
                     $scope.Modelo = response.data.Modelo,
                     $scope.Color = response.data.Color,
@@ -62,6 +62,7 @@ function SolicitudController($scope, $http)
             console.log(response.data)
         })
     }
+
 }
 
 app.controller('SolicitudController', SolicitudController)
