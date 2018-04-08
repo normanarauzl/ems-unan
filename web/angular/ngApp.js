@@ -16,7 +16,7 @@ function SolicitudController($scope, $http)
                 bandera = true
             }
         })
-        
+
         if (isNaN(IdEquipo))
         {
             alertify.error('Debe seleccionar un equipo de la lista')

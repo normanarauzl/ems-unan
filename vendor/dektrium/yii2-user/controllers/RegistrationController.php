@@ -124,13 +124,17 @@ class RegistrationController extends Controller
      * @throws \yii\web\HttpException
      */
 
-    private function UpdateUser($post, $user)
+    private function CreatePersona($post, $persona, $email)
     {
-        $user->attributes = $post['User'];
-        $user->password_hash = Password::hash($user->password);
-        $user->flags = 0;
-        $user->save();
-        return $user->id;
+        $persona->attributes = $post['Persona'];
+        $persona->IdUsuario = $this->FindUser($email);
+        $persona->IdTipo = TipoPersona::findOne(['Descripcion'=>'Docente'])->Id;
+        $persona->save();
+    }
+
+    private function FindUser($email)
+    {
+        return User::findOne(['email'=>$email])->id;
     }
 
     public function actionRegister()
@@ -142,23 +146,17 @@ class RegistrationController extends Controller
         }
 
         /** @var RegistrationForm $model */
-        $model = new User();
+        $model = \Yii::createObject(RegistrationForm::className());
         $event = $this->getFormEvent($model);
 
         $this->trigger(self::EVENT_BEFORE_REGISTER, $event);
 
         $this->performAjaxValidation($model);
         //VarDumper::dump($model,10, true); exit();
-        if ($model->load(\Yii::$app->request->post())) {
-
+        if ($model->load(\Yii::$app->request->post()) && $model->register()) {
             $post = \Yii::$app->request->post();
-            $persona->attributes = $post['Persona'];
-            $persona->IdUsuario = $this->UpdateUser($post,$model);
-            $persona->IdTipo = TipoPersona::findOne(['Descripcion'=>'Docente'])->Id;
-            $persona->save();
-
-            //$persona->IdUsuario = $model->id
             $this->trigger(self::EVENT_AFTER_REGISTER, $event);
+            $this->CreatePersona($post,$persona, $model->attributes['email']);
 
             return $this->render('/message', [
                 'title'  => \Yii::t('user', 'Your account has been created'),
