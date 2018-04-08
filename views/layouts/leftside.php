@@ -25,8 +25,8 @@ use yii\helpers\Url;
                     'options' => ['class' => 'sidebar-menu'],
                     'items' => [
                         ['label' => 'Menu', 'options' => ['class' => 'header']],
-                        ['label' => 'Inicio', 'icon' => 'fa fa-gg', 
-                            'url' => ['/'], 'active' => $this->context->route == 'site/index'
+                        ['label' => 'Inicio', 'icon' => 'fa fa-gg',
+                            'url' => Yii::$app->homeUrl
                         ],
                         [
                             'label' => 'Personas',
