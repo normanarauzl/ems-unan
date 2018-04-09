@@ -51,8 +51,8 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
 //             'UbicacionActual',
             [
-                'attribute' => 'UbicacionOrigen',
-                'value'=>'ubicacionOrigen.Descripcion',
+                'attribute' => 'UbicacionActual',
+                'value'=>'ubicacionActual.Descripcion',
             ],
 
             ['class' => 'yii\grid\ActionColumn'],
