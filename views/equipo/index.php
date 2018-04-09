@@ -26,6 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 //            'Id',
 //            'IdTipo',
+            'Descripcion',
             [
                 'attribute' => 'IdTipo',
                 'value'=>'idTipo.Descripcion',
@@ -43,9 +44,16 @@ $this->params['breadcrumbs'][] = $this->title;
                  return $model->Estado == 1 ? 'Bueno' : 'Malo';
             },
             ],
-             'Descripcion',
-             'UbicacionOrigen',
-             'UbicacionActual',
+//             'UbicacionOrigen',
+            [
+                'attribute' => 'UbicacionOrigen',
+                'value'=>'ubicacionOrigen.Descripcion',
+            ],
+//             'UbicacionActual',
+            [
+                'attribute' => 'UbicacionOrigen',
+                'value'=>'ubicacionOrigen.Descripcion',
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

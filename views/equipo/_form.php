@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use app\models\TipoEquipo;
+use app\models\Ubicacion;
 use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
@@ -14,6 +15,8 @@ use yii\helpers\ArrayHelper;
 
     <?php $form = ActiveForm::begin(); ?>
 
+    <?= $form->field($model, 'Descripcion')->textInput(['maxlength' => true]) ?>
+    
     <?= $form->field($model, 'IdTipo')->dropDownList(ArrayHelper::map(TipoEquipo::find()->select(['Descripcion','Id'])->all(), 'Id', 'Descripcion'),['class' => 'form-control inline-block'],['prompt'=>'Seleccione el tipo de equipos']); ?>
 
     <?= $form->field($model, 'Prestado')->textInput() ?>
@@ -30,11 +33,9 @@ use yii\helpers\ArrayHelper;
 
     <?= $form->field($model, 'Estado')->dropDownList(['1' => 'Bueno', '2' => 'Malo']) ?>
 
-    <?= $form->field($model, 'Descripcion')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'UbicacionOrigen')->dropDownList(ArrayHelper::map(Ubicacion::find()->select(['Descripcion','Id'])->all(), 'Id', 'Descripcion'),['class' => 'form-control inline-block'],['prompt'=>'Seleccione la ubicacion Origen']); ?>
 
-    <?= $form->field($model, 'UbicacionOrigen')->textInput() ?>
-
-    <?= $form->field($model, 'UbicacionActual')->textInput() ?>
+    <?= $form->field($model, 'UbicacionActual')->dropDownList(ArrayHelper::map(Ubicacion::find()->select(['Descripcion','Id'])->all(), 'Id', 'Descripcion'),['class' => 'form-control inline-block'],['prompt'=>'Seleccione la ubicacion Actual']); ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Crear') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

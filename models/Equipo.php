@@ -40,9 +40,11 @@ class Equipo extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['IdTipo', 'Prestado', 'UbicacionOrigen', 'UbicacionActual'], 'integer'],
+            [['IdTipo', 'Prestado'], 'integer'],
             [['Marca', 'Modelo', 'NoSerie', 'CodInventario', 'Color', 'Estado', 'Descripcion'], 'string', 'max' => 255],
             [['IdTipo'], 'exist', 'skipOnError' => true, 'targetClass' => TipoEquipo::className(), 'targetAttribute' => ['IdTipo' => 'Id']],
+            [['UbicacionOrigen'], 'exist', 'skipOnError' => true, 'targetClass' => Ubicacion::className(), 'targetAttribute' => ['UbicacionOrigen' => 'Id']],
+            [['UbicacionActual'], 'exist', 'skipOnError' => true, 'targetClass' => Ubicacion::className(), 'targetAttribute' => ['UbicacionActual' => 'Id']],
         ];
     }
 
@@ -90,4 +92,21 @@ class Equipo extends \yii\db\ActiveRecord
     {
         return $this->hasMany(MovimientoMantenimiento::className(), ['IdEquipo' => 'Id']);
     }
+    
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUbicacionOrigen()
+    {
+        return $this->hasOne(Ubicacion::className(), ['Id' => 'UbicacionOrigen']);
+    }
+    
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUbicacionActual()
+    {
+        return $this->hasOne(Ubicacion::className(), ['Id' => 'UbicacionActual']);
+    }
+    
 }

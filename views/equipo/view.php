@@ -45,8 +45,10 @@ $this->params['breadcrumbs'][] = $this->title;
             },
             ],
             'Descripcion',
-            'UbicacionOrigen',
-            'UbicacionActual',
+//            'UbicacionOrigen',
+//            'UbicacionActual',
+            'ubicacionOrigen.Descripcion:text:Ubicacion Origen',
+            'ubicacionActual.Descripcion:text:Ubicacion Actual',
         ],
     ]) ?>
 
