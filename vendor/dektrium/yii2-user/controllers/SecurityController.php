@@ -145,7 +145,7 @@ class SecurityController extends Controller
     public function actionLogin()
     {
         if (!\Yii::$app->user->isGuest) {
-            $this->goHome();
+            return $this->redirect(Url::to(['/solicitud/create']));
         }
 
         /** @var LoginForm $model */
