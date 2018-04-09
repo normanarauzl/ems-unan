@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use app\models\Ubicacion;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Ubicacion */
@@ -35,7 +36,9 @@ $this->params['breadcrumbs'][] = $this->title;
              'attribute' => 'Estado',
              'value' => 1 ? 'Activo' : 'Inactivo',
             ],
-            'Clasificacion',
+//            'Clasificacion',
+            'clasificacionLabel:Text:Clasificacion',
+            
         ],
     ]) ?>
 

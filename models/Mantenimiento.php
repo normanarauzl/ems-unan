@@ -43,10 +43,10 @@ class Mantenimiento extends \yii\db\ActiveRecord
     {
         return [
             'Id' => Yii::t('app', 'ID'),
-            'IdUbicacion' => Yii::t('app', 'Id Ubicacion'),
+            'IdUbicacion' => Yii::t('app', 'Ubicacion'),
             'Fecha' => Yii::t('app', 'Fecha'),
             'Observacion' => Yii::t('app', 'Observacion'),
-            'IdAyudante' => Yii::t('app', 'Id Ayudante'),
+            'IdAyudante' => Yii::t('app', 'Enviado por'),
         ];
     }
 

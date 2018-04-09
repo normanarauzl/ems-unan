@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use app\models\Turno;
+use kartik\time\TimePicker;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Periodo */
@@ -18,9 +19,10 @@ use app\models\Turno;
 
     <?= $form->field($model, 'Descripcion')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'HoriaInicio')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model,'HoriaInicio')->widget(TimePicker::className(),['pluginOptions' => ['showSeconds' => false]]) ?>
 
-    <?= $form->field($model, 'HoraFin')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model,'HoraFin')->widget(TimePicker::className(),['pluginOptions' => ['showSeconds' => false]]) ?>
+
 
     <?= $form->field($model, 'Estado')->dropDownList(['1' => 'Activo', '2' => 'Inactivo']) ?>
 

@@ -33,7 +33,11 @@ $this->title = Yii::t('app', 'Ubicaciones');
                  return $model->Estado == 1 ? 'Activa' : 'Inactiva';
             },
             ],
-            'Clasificacion',
+//            'Clasificacion',
+            [
+                'attribute' => 'Clasificacion',
+                'value' => 'clasificacionLabel',
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

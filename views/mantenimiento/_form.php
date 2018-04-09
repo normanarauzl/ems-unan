@@ -5,6 +5,7 @@ use yii\widgets\ActiveForm;
 use app\models\Ubicacion;
 use app\models\Persona;
 use yii\helpers\ArrayHelper;
+use kartik\date\DatePicker;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Mantenimiento */
@@ -17,7 +18,23 @@ use yii\helpers\ArrayHelper;
 
     <?= $form->field($model, 'IdUbicacion')->dropDownList(ArrayHelper::map(Ubicacion::find()->select(['Descripcion','Id'])->all(), 'Id', 'Descripcion'),['class' => 'form-control inline-block'],['prompt'=>'Seleccione la ubicación']); ?>
 
-    <?= $form->field($model, 'Fecha')->textInput(['maxlength' => true]) ?>
+    
+
+            <?=
+            DatePicker::widget([
+                'model' => $model,
+                'attribute' => 'Fecha',
+                'options' => [
+                    'class'=>'form-control',
+                    'required'=>true
+                ],
+                'language' => 'es',
+                'pluginOptions' => [
+                   'format'=> 'yyyy-mm-dd' 
+                ],
+            ]);
+            ?>
+
 
     <?= $form->field($model, 'Observacion')->textInput(['maxlength' => true]) ?>
 
