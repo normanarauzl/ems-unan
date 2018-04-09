@@ -11,9 +11,9 @@ use yii\helpers\Url;
 
 <div class="persona-form">
 
-    <?php $form = ActiveForm::begin(['id'=>$model->formName(),
-                                     'enableAjaxValidation'=>true,
-                                     'validationUrl'=>Url::toRoute('persona/validation')
+    <?php $form = ActiveForm::begin(['id'=>'registration-form',
+         'enableAjaxValidation'=>true,
+         'validationUrl'=>Url::toRoute('persona/validation'),
         ]); ?>
 
     <div class="alert alert-success">

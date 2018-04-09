@@ -13,6 +13,8 @@ use dektrium\user\models\User;
 use yii\widgets\ActiveForm;
 use dektrium\user\helpers\Password;
 use app\models\TipoPersona;
+use dektrium\user\controllers\RegistrationController;
+use dektrium\user\models\RegistrationForm;
 
 /**
  * PersonaController implements the CRUD actions for Persona model.
@@ -77,27 +79,28 @@ class PersonaController extends Controller
         }
     }
 
-    private function UpdateUser($post, $user)
+    private function FindUser($email)
     {
-        $user->attributes = $post['User'];
-        $user->password_hash = Password::hash($user->password);
-        $user->flags = 0;
-        $user->save();
-        return $user->id;
+        return User::findOne(['email'=>$email])->id;
+    }
+
+    private function CreatePersona($post, $model, $email)
+    {
+        $model->attributes = $post['Persona'];
+        $model->IdUsuario = $this->FindUser($email);
+        $model->IdTipo = TipoPersona::findOne(['Descripcion'=>'Docente'])->Id;
+        $model->save();
     }
 
     public function actionCreate()
     {
         $model = new Persona();
-        $user = new User();
+        $user = \Yii::createObject(RegistrationForm::className());
 
-        if ((Yii::$app->request->post())) {
+        if ($user->load(\Yii::$app->request->post()) && $user->register()) {
 
-            $post = Yii::$app->request->post();
-            $model->attributes = $post['Persona'];
-            $model->IdUsuario = $this->UpdateUser($post, $user);
-            $model->IdTipo = TipoPersona::findOne(['Descripcion'=>'Docente'])->Id;
-            $model->save();
+            $post = \Yii::$app->request->post();
+            $this->CreatePersona($post,$model, $user->attributes['email']);
             return $this->redirect(['view', 'id' => $model->Id]);
         } else {
             return $this->render('create', [

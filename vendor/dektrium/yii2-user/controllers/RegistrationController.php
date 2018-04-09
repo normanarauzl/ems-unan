@@ -152,7 +152,6 @@ class RegistrationController extends Controller
         $this->trigger(self::EVENT_BEFORE_REGISTER, $event);
 
         $this->performAjaxValidation($model);
-        //VarDumper::dump($model,10, true); exit();
         if ($model->load(\Yii::$app->request->post()) && $model->register()) {
             $post = \Yii::$app->request->post();
             $this->trigger(self::EVENT_AFTER_REGISTER, $event);

@@ -216,7 +216,7 @@ class Controller extends \yii\base\Controller
      */
     public function goHome()
     {
-        return Yii::$app->getResponse()->redirect(Yii::$app->getHomeUrl().'solicitud/create');
+        return Yii::$app->getResponse()->redirect(Yii::$app->getHomeUrl().'user/login');
     }
 
     /**
