@@ -8,7 +8,6 @@ function SolicitudController($scope, $http)
         var IdEquipo = $scope.IdEquipo
         var Descripcion = $('#select2-IdEquipo-container').text()
         var bandera = false
-
         angular.forEach($scope.detalleSolicitud,function (value, key) {
             if(value.IdEquipo == IdEquipo)
             {
@@ -17,7 +16,7 @@ function SolicitudController($scope, $http)
             }
         })
 
-        if (isNaN(IdEquipo))
+        if ($scope.Modelo == null)
         {
             alertify.error('Debe seleccionar un equipo de la lista')
         }
