@@ -77,8 +77,7 @@ use yii\helpers\Url;
                             ],
                         ['label' => 'Debug', 'icon' => 'fa fa-dashboard', 'url' => ['/debug'],
                             'visible'=>!Yii::$app->user->isGuest
-                            ],
-                        
+                            ],                    
                     ],
                 ]
         )

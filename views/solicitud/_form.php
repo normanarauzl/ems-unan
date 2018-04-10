@@ -48,7 +48,7 @@ $data = ArrayHelper::map(ListaEquipos::find()->where(['Estado'=>'1'])->andWhere(
                 'name' => 'IdUbicacion',
                 'model'=>$model,
                 'attribute'=> 'IdUbicacion',
-                'data' => ArrayHelper::map(Ubicacion::find()->asArray()->all(), 'Id', 'Descripcion'),
+                'data' => ArrayHelper::map(Ubicacion::find()->where(['Clasificacion'=>'3'])->asArray()->all(), 'Id', 'Descripcion'),
                 'options' =>
                     [
                         'multiple' => false,
