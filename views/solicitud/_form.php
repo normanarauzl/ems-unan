@@ -54,8 +54,8 @@ $data = ArrayHelper::map(ListaEquipos::find()->where(['Estado'=>'1'])->andWhere(
                 <div class="col-md-2">
                     <label for="">Fecha de Inicio</label>
                     <?= DatePicker::widget(['model' => $model, 'attribute' => 'FechaInicio', 'options' => [
-                            'class'=>'form-control', 'required'=>true
-                        ],
+                        'class'=>'form-control', 'required'=>true
+                    ],
                         'language' => 'es',
                         'dateFormat' => 'php:Y-m-d',
                     ]);
@@ -84,7 +84,7 @@ $data = ArrayHelper::map(ListaEquipos::find()->where(['Estado'=>'1'])->andWhere(
                     <?= Html::dropDownList('Turno', null,
                         ArrayHelper::map(Turno::find()->all(), 'Id', 'Descripcion'),
                         ['prompt'=>'Seleccione el Turno','class'=>'form-control','required'=>true]
-                        ) ?>
+                    ) ?>
                 </div>
                 <div class="col-md-2">
                     <?= $form->field($model, 'IdPeriodo')->dropDownList(
