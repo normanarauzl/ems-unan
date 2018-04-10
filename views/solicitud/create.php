@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="solicitud-create">
 
     <?= $this->render('_form', [
-        'model' => $model,
+        'model' => $model, 'persona'=>$persona
     ]) ?>
 
 </div>

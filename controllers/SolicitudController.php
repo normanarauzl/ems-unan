@@ -2,14 +2,17 @@
 
 namespace app\controllers;
 
+use app\models\User;
 use Yii;
 use app\models\Solicitud;
 use app\models\SolicitudSearch;
+use yii\helpers\VarDumper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\models\ListaEquipos;
 use yii\helpers\Json;
+use app\models\Persona;
 
 /**
  * SolicitudController implements the CRUD actions for Solicitud model.
@@ -72,12 +75,13 @@ class SolicitudController extends Controller
     public function actionCreate()
     {
         $model = new Solicitud();
+        $persona = Persona::findOne(['IdUsuario'=>Yii::$app->user->identity->id])->toArray();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->Id]);
         } else {
             return $this->render('create', [
-                'model' => $model,
+                'model' => $model, 'persona'=>$persona
             ]);
         }
     }

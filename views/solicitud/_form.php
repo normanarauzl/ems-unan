@@ -12,6 +12,7 @@ use app\models\ListaPeriodos;
 use yii\helpers\Json;
 use yii\db\Query;
 use app\models\ListaEquipos;
+use app\models\Turno;
 /* @var $this yii\web\View */
 /* @var $model app\models\Solicitud */
 /* @var $form yii\widgets\ActiveForm */
@@ -23,95 +24,82 @@ $data = ArrayHelper::map(ListaEquipos::find()->where(['Estado'=>'1'])->andWhere(
 <div class="solicitud-form" ng-controller="SolicitudController">
 
     <?php $form = ActiveForm::begin(); ?>
-    <br>
-    <div class="row">
-        <div class="col-md-3">
-            <label for="">Nombre del Solicitante</label>
-            <?=
-            Select2::widget([
-                'name' => 'IdPersona',
-                'model'=>$model,
-                'attribute'=> 'IdPersona',
-                'data' => ArrayHelper::map(Personas::find()->where(['TipoPersona'=>'Docente'])->andWhere(['Estado'=>'1'])->asArray()->all(), 'Id', 'NombreCompleto'),
-                'options' =>
-                    [
-                        'multiple' => false,
-                        'placeholder' => 'Seleccione a la Persona'
-                    ]
-            ]);
-            ?>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Información del solicitante</h3>
         </div>
-        <div class="col-md-3">
-            <label for="">Ubicación de la solicitud</label>
-            <?=
-            Select2::widget([
-                'name' => 'IdUbicacion',
-                'model'=>$model,
-                'attribute'=> 'IdUbicacion',
-                'data' => ArrayHelper::map(Ubicacion::find()->asArray()->all(), 'Id', 'Descripcion'),
-                'options' =>
-                    [
-                        'multiple' => false,
-                        'placeholder' => 'Seleccione la Ubicacion'
-                    ]
-            ]);
-            ?>
-        </div>
-        <div class="col-md-5">
-            <label for="">Periodo</label>
-            <?=
-            Select2::widget([
-                'name' => 'IdPeriodo',
-                'model'=>$model,
-                'attribute'=> 'IdPeriodo',
-                'data' => ArrayHelper::map(ListaPeriodos::find()->asArray()->all(), 'Id', 'DescripcionCompleta'),
-                'options' =>
-                    [
-                        'multiple' => false,
-                        'placeholder' => 'Seleccione Periodo'
-                    ]
-            ]);
-            ?>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-3">
+                    <label for="">Nombre del Solicitante: </label>
+                    <input type="text" value="<?= $persona['Nombres'].' '.$persona['Apellidos']?>" readonly class="form-control">
+                </div>
+                <div class="col-md-3">
+                    <label for="">Cédula: </label>
+                    <input type="text" value="<?= $persona['Cedula']?>" readonly class="form-control">
+                </div>
+                <div class="col-md-3">
+                    <label for="">Teléfono: </label>
+                    <input type="text" value="<?= $persona['Telefono']?>" readonly class="form-control">
+                </div>
+            </div>
         </div>
     </div>
-    <br>
-    <div class="row">
-        <div class="col-md-2">
-            <label for="">Fecha de Inicio</label>
-            <?=
-            DatePicker::widget([
-                'model' => $model,
-                'attribute' => 'FechaInicio',
-                'options' => [
-                    'class'=>'form-control',
-                    'required'=>true
-                ],
-                'language' => 'es',
-                'dateFormat' => 'php:Y-m-d',
-            ]);
-            ?>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Datos de la solicitud</h3>
         </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-2">
+                    <label for="">Fecha de Inicio</label>
+                    <?= DatePicker::widget(['model' => $model, 'attribute' => 'FechaInicio', 'options' => [
+                            'class'=>'form-control', 'required'=>true
+                        ],
+                        'language' => 'es',
+                        'dateFormat' => 'php:Y-m-d',
+                    ]);
+                    ?>
+                </div>
 
-        <div class="col-md-2">
-            <label for="">Fecha de Fin</label>
-            <?=
-            DatePicker::widget([
-                'model' => $model,
-                'attribute' => 'FechaFin',
-                'options' => [
-                    'class'=>'form-control',
-                    'required'=>true
-                ],
-                'language' => 'es',
-                'dateFormat' => 'php:Y-m-d',
-            ]);
-            ?>
+                <div class="col-md-2">
+                    <label for="">Fecha de Fin</label>
+                    <?= DatePicker::widget(['model' => $model, 'attribute' => 'FechaFin', 'options' => [
+                        'class'=>'form-control', 'required'=>true
+                    ],
+                        'language' => 'es',
+                        'dateFormat' => 'php:Y-m-d',
+                    ]);
+                    ?>
+                </div>
+
+                <div class="col-md-2">
+                    <?= $form->field($model, 'IdUbicacion')->dropDownList(
+                        ArrayHelper::map(Ubicacion::find()->where(['Estado'=>'1'])->asArray()->all(),'Id', 'Descripcion'),
+                        ['prompt'=>'Seleccione Ubicacion','required'=>true]
+                    );?>
+                </div>
+                <div class="col-md-2">
+                    <label for="">Turno </label>
+                    <?= Html::dropDownList('Turno', null,
+                        ArrayHelper::map(Turno::find()->all(), 'Id', 'Descripcion'),
+                        ['prompt'=>'Seleccione el Turno','class'=>'form-control','required'=>true]
+                        ) ?>
+                </div>
+                <div class="col-md-2">
+                    <?= $form->field($model, 'IdPeriodo')->dropDownList(
+                        ArrayHelper::map(ListaPeriodos::find()->asArray()->all(), 'Id', 'DescripcionCompleta'),
+                        ['prompt'=>'Seleccione el Período','required'=>true]
+                    );?>
+                </div>
+            </div>
         </div>
     </div>
-    <br>
-
 
     <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Detalle de la solicitud [Seleccione el/los equipo y agregue a la lista]</h3>
+        </div>
         <table class="table table-fixed" width="100%">
             <thead>
             <th width="15%">Equipo</th>
@@ -151,8 +139,6 @@ $data = ArrayHelper::map(ListaEquipos::find()->where(['Estado'=>'1'])->andWhere(
         </table>
     </div>
 
-
-    <br><br>
     <div class="panel panel-primary">
         <table class="table table-bordered table-condensed table-striped">
             <tbody>
@@ -180,41 +166,7 @@ $data = ArrayHelper::map(ListaEquipos::find()->where(['Estado'=>'1'])->andWhere(
             </tbody>
         </table>
     </div>
-    <div class="row">
-        <div class="col-md-6">
-            <label for="">Entregado por</label>
-            <?=
-            Select2::widget([
-                'name' => 'EntregadoPor',
-                'model'=>$model,
-                'attribute'=> 'EntregadoPor',
-                'data' => ArrayHelper::map(Personas::find()->where(['TipoPersona'=>'Ayudante'])->andWhere(['Estado'=>'1'])->asArray()->all(), 'Id', 'NombreCompleto'),
-                'options' =>
-                    [
-                        'multiple' => false,
-                        'placeholder' => 'Seleccione Ayudante'
-                    ]
-            ]);
-            ?>
-        </div>
-        <div class="col-md-6">
-            <label for="">Retirado por</label>
-            <?=
-            Select2::widget([
-                'name' => 'RetiradoPor',
-                'model'=>$model,
-                'attribute'=> 'RetiradoPor',
-                'data' => ArrayHelper::map(Personas::find()->where(['TipoPersona'=>'Ayudante'])->andWhere(['Estado'=>'1'])->asArray()->all(), 'Id', 'NombreCompleto'),
-                'options' =>
-                    [
-                        'multiple' => false,
-                        'placeholder' => 'Seleccione Ayudante'
-                    ]
-            ]);
-            ?>
-        </div>
-    </div>
-    <br>
+
     <?= $form->field($model, 'Observacion1')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">

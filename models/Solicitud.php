@@ -58,17 +58,17 @@ class Solicitud extends \yii\db\ActiveRecord
         return [
             'Id' => 'ID',
             'IdPersona' => 'Id Persona',
-            'IdUbicacion' => 'Id Ubicacion',
+            'IdUbicacion' => 'Ubicacion de la Solicitud',
             'FechaInicio' => 'Fecha Inicio',
             'FechaFin' => 'Fecha Fin',
             'Estado' => 'Estado',
             'FechaSolicitud' => 'Fecha Solicitud',
             'EntregadoPor' => 'Entregado Por',
             'RetiradoPor' => 'Retirado Por',
-            'Observacion1' => 'Observacion1',
-            'Observacion2' => 'Observacion2',
-            'Observacion3' => 'Observacion3',
-            'IdPeriodo' => 'Id Periodo',
+            'Observacion1' => 'Observacion',
+            'Observacion2' => 'Observacion',
+            'Observacion3' => 'Observacion',
+            'IdPeriodo' => 'Periodo',
         ];
     }
 

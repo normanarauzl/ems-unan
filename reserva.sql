@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50718
 File Encoding         : 65001
 
-Date: 2018-04-07 20:25:28
+Date: 2018-04-10 11:36:09
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -33,6 +33,7 @@ CREATE TABLE `auth_assignment` (
 INSERT INTO `auth_assignment` VALUES ('administrator', '1', '1502393734');
 INSERT INTO `auth_assignment` VALUES ('estudiante', '4', '1502920005');
 INSERT INTO `auth_assignment` VALUES ('estudiante', '5', '1504828262');
+INSERT INTO `auth_assignment` VALUES ('profesor', '26', '1523379586');
 
 -- ----------------------------
 -- Table structure for `auth_item`
@@ -131,6 +132,13 @@ INSERT INTO `auth_item` VALUES ('/site/error', '2', null, null, null, '150224159
 INSERT INTO `auth_item` VALUES ('/site/index', '2', null, null, null, '1502241594', '1502241594');
 INSERT INTO `auth_item` VALUES ('/site/login', '2', null, null, null, '1502241594', '1502241594');
 INSERT INTO `auth_item` VALUES ('/site/logout', '2', null, null, null, '1502241594', '1502241594');
+INSERT INTO `auth_item` VALUES ('/solicitud/*', '2', null, null, null, '1523378361', '1523378361');
+INSERT INTO `auth_item` VALUES ('/solicitud/create', '2', null, null, null, '1523378361', '1523378361');
+INSERT INTO `auth_item` VALUES ('/solicitud/datos-equipo', '2', null, null, null, '1523378361', '1523378361');
+INSERT INTO `auth_item` VALUES ('/solicitud/delete', '2', null, null, null, '1523378361', '1523378361');
+INSERT INTO `auth_item` VALUES ('/solicitud/index', '2', null, null, null, '1523378361', '1523378361');
+INSERT INTO `auth_item` VALUES ('/solicitud/update', '2', null, null, null, '1523378361', '1523378361');
+INSERT INTO `auth_item` VALUES ('/solicitud/view', '2', null, null, null, '1523378361', '1523378361');
 INSERT INTO `auth_item` VALUES ('/user/*', '2', null, null, null, '1502241593', '1502241593');
 INSERT INTO `auth_item` VALUES ('/user/admin/*', '2', null, null, null, '1502241593', '1502241593');
 INSERT INTO `auth_item` VALUES ('/user/admin/assignments', '2', null, null, null, '1502241593', '1502241593');
@@ -149,11 +157,6 @@ INSERT INTO `auth_item` VALUES ('/user/profile/show', '2', null, null, null, '15
 INSERT INTO `auth_item` VALUES ('/user/recovery/*', '2', null, null, null, '1502241593', '1502241593');
 INSERT INTO `auth_item` VALUES ('/user/recovery/request', '2', null, null, null, '1502241593', '1502241593');
 INSERT INTO `auth_item` VALUES ('/user/recovery/reset', '2', null, null, null, '1502241593', '1502241593');
-INSERT INTO `auth_item` VALUES ('/user/registration/*', '2', null, null, null, '1502241593', '1502241593');
-INSERT INTO `auth_item` VALUES ('/user/registration/confirm', '2', null, null, null, '1502241593', '1502241593');
-INSERT INTO `auth_item` VALUES ('/user/registration/connect', '2', null, null, null, '1502241593', '1502241593');
-INSERT INTO `auth_item` VALUES ('/user/registration/register', '2', null, null, null, '1502241593', '1502241593');
-INSERT INTO `auth_item` VALUES ('/user/registration/resend', '2', null, null, null, '1502241593', '1502241593');
 INSERT INTO `auth_item` VALUES ('/user/security/*', '2', null, null, null, '1502241593', '1502241593');
 INSERT INTO `auth_item` VALUES ('/user/security/auth', '2', null, null, null, '1502241593', '1502241593');
 INSERT INTO `auth_item` VALUES ('/user/security/login', '2', null, null, null, '1502241593', '1502241593');
@@ -167,6 +170,7 @@ INSERT INTO `auth_item` VALUES ('/user/settings/networks', '2', null, null, null
 INSERT INTO `auth_item` VALUES ('/user/settings/profile', '2', null, null, null, '1502241593', '1502241593');
 INSERT INTO `auth_item` VALUES ('administrator', '1', null, null, null, '1502241539', '1502241689');
 INSERT INTO `auth_item` VALUES ('estudiante', '1', null, null, null, '1502914131', '1502914131');
+INSERT INTO `auth_item` VALUES ('profesor', '1', null, null, null, '1523378331', '1523378331');
 
 -- ----------------------------
 -- Table structure for `auth_item_child`
@@ -185,6 +189,10 @@ CREATE TABLE `auth_item_child` (
 -- Records of auth_item_child
 -- ----------------------------
 INSERT INTO `auth_item_child` VALUES ('administrator', '/*');
+INSERT INTO `auth_item_child` VALUES ('profesor', '/solicitud/create');
+INSERT INTO `auth_item_child` VALUES ('profesor', '/solicitud/datos-equipo');
+INSERT INTO `auth_item_child` VALUES ('profesor', '/solicitud/update');
+INSERT INTO `auth_item_child` VALUES ('profesor', '/solicitud/view');
 
 -- ----------------------------
 -- Table structure for `auth_rule`
@@ -374,7 +382,7 @@ CREATE TABLE `persona` (
   KEY `IdTipoPersona_Index` (`IdTipo`) USING BTREE,
   CONSTRAINT `IdTipoPersona_PFK` FOREIGN KEY (`IdTipo`) REFERENCES `tipo_persona` (`Id`),
   CONSTRAINT `IdUsuario_UFK` FOREIGN KEY (`IdUsuario`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of persona
@@ -383,6 +391,17 @@ INSERT INTO `persona` VALUES ('1', 'Norman', 'Arauz', '441-191288-0005R', '57108
 INSERT INTO `persona` VALUES ('2', 'Marianela', 'Ortuño', '441-787878-005A', '44578996', null, '1', '3');
 INSERT INTO `persona` VALUES ('3', 'Ramiro', 'Contreras', '441-787878-0059', '564478', null, '1', '4');
 INSERT INTO `persona` VALUES ('4', 'Ricardo', 'Ramirez', '441-787878-0025E', '12332546', null, '1', '6');
+INSERT INTO `persona` VALUES ('7', 'test', 'test', 'test', 't', null, '1', '9');
+INSERT INTO `persona` VALUES ('8', 'Rogoberto', 'Mendoza', '441-0000-0003R', '121212', null, '1', '10');
+INSERT INTO `persona` VALUES ('9', 'Sofia', 'Maria', '441-000000-0005R', '121212', null, '1', '11');
+INSERT INTO `persona` VALUES ('10', 'Estela', 'Juarez', '000000000', '000000000', null, '1', '13');
+INSERT INTO `persona` VALUES ('11', 'asdf', 'asdf', 'asdf', 'asdf', null, '1', '19');
+INSERT INTO `persona` VALUES ('12', 'Marco', 'Antonio', '441-000000-000A', '2772-1234', null, '1', '20');
+INSERT INTO `persona` VALUES ('13', 'Francisco', 'Meza', '001-000000-0005R', '000000', null, '1', '22');
+INSERT INTO `persona` VALUES ('14', 'Octavio', 'Picado', '000000', '000000', null, '1', '23');
+INSERT INTO `persona` VALUES ('15', 'Wilmer', 'Palacio', '001-000000-0005R', '00000000', null, '2', '25');
+INSERT INTO `persona` VALUES ('16', 'Norman', 'Arauz', '441-191288-0005R', '2772-6666', null, '1', '26');
+INSERT INTO `persona` VALUES ('17', 'Erick', 'Lanzas', '001-000000-0005R', '2772-6666', null, '1', '1');
 
 -- ----------------------------
 -- Table structure for `profile`
@@ -400,7 +419,7 @@ CREATE TABLE `profile` (
   `timezone` varchar(40) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`user_id`),
   CONSTRAINT `profile_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of profile
@@ -411,6 +430,18 @@ INSERT INTO `profile` VALUES ('3', null, null, null, null, null, null, null, nul
 INSERT INTO `profile` VALUES ('4', null, null, null, null, null, null, null, null);
 INSERT INTO `profile` VALUES ('5', null, null, null, null, null, null, null, null);
 INSERT INTO `profile` VALUES ('6', null, null, null, null, null, null, null, null);
+INSERT INTO `profile` VALUES ('9', null, null, null, null, null, null, null, null);
+INSERT INTO `profile` VALUES ('10', null, null, null, null, null, null, null, null);
+INSERT INTO `profile` VALUES ('11', null, null, null, null, null, null, null, null);
+INSERT INTO `profile` VALUES ('12', null, null, null, null, null, null, null, null);
+INSERT INTO `profile` VALUES ('13', null, null, null, null, null, null, null, null);
+INSERT INTO `profile` VALUES ('19', null, null, null, null, null, null, null, null);
+INSERT INTO `profile` VALUES ('20', null, null, null, null, null, null, null, null);
+INSERT INTO `profile` VALUES ('22', null, null, null, null, null, null, null, null);
+INSERT INTO `profile` VALUES ('23', null, null, null, null, null, null, null, null);
+INSERT INTO `profile` VALUES ('24', null, null, null, null, null, null, null, null);
+INSERT INTO `profile` VALUES ('25', null, null, null, null, null, null, null, null);
+INSERT INTO `profile` VALUES ('26', null, null, null, null, null, null, null, null);
 
 -- ----------------------------
 -- Table structure for `social_account`
@@ -462,11 +493,12 @@ CREATE TABLE `solicitud` (
   CONSTRAINT `IdPeriodo_SFK` FOREIGN KEY (`IdPeriodo`) REFERENCES `periodo` (`Id`),
   CONSTRAINT `IdPersona_SFK` FOREIGN KEY (`IdPersona`) REFERENCES `persona` (`Id`),
   CONSTRAINT `IdUbicacion_SFK` FOREIGN KEY (`IdUbicacion`) REFERENCES `ubicacion` (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of solicitud
 -- ----------------------------
+INSERT INTO `solicitud` VALUES ('1', null, null, '2018-04-04', '2018-04-03', null, null, null, null, '', null, null, null);
 
 -- ----------------------------
 -- Table structure for `tipo_equipo`
@@ -528,11 +560,14 @@ CREATE TABLE `turno` (
   `Descripcion` varchar(255) DEFAULT NULL,
   `Estado` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of turno
 -- ----------------------------
+INSERT INTO `turno` VALUES ('1', 'Matutino', '1');
+INSERT INTO `turno` VALUES ('2', 'Vespertino', '1');
+INSERT INTO `turno` VALUES ('3', 'Nocturno', '1');
 
 -- ----------------------------
 -- Table structure for `ubicacion`
@@ -544,11 +579,12 @@ CREATE TABLE `ubicacion` (
   `Estado` int(11) DEFAULT NULL,
   `Clasificacion` int(11) DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of ubicacion
 -- ----------------------------
+INSERT INTO `ubicacion` VALUES ('1', 'Aula A4', '1', '3');
 
 -- ----------------------------
 -- Table structure for `user`
@@ -572,17 +608,29 @@ CREATE TABLE `user` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_unique_username` (`username`) USING BTREE,
   UNIQUE KEY `user_unique_email` (`email`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
 INSERT INTO `user` VALUES ('1', 'admin', 'admin@sistema.com', '$2y$10$vy7NbA06xq2z9audQM5l6OMWgIHLXpTIH.rbBHA3pk5NnJwRU8KZu', 'yzUH8bU5cnL2B9hHHe9Xl86iZGM35YPA', '1502235895', null, null, '127.0.0.1', '1502235382', '1502235382', '0', '10', null);
 INSERT INTO `user` VALUES ('2', 'netman', 'netman.arauz@gmail.com', '$2y$10$6y6X/hOWzm5LhSIdRVwAme9n8OjvPl0Ru6lTqCo9.hMwIz614vOxm', '6BvV6YbvO3aP1Y4Gwd2-nlqOnYn7UY0Y', '1523080800', null, '1523137134', '127.0.0.1', '1523131674', '1523131674', '0', '10', null);
-INSERT INTO `user` VALUES ('3', 'marianela', 'marianela@gmail.com', '$2y$10$5BBEKoDdxoZTTxTbtpxoi.4a9zM4PowZIzjorePo3TXemvvFv38qK', 'xuz4ps1Fi77mGS_dxkleqOAewaF82YDf', null, null, null, '127.0.0.1', '1523137168', '1523137168', '0', '10', null);
-INSERT INTO `user` VALUES ('4', 'ramiro', 'ramiro@yahoo.es', '$2y$10$PUqe2GNHr9NErb5lLAZxNeHrSORkU3TxH7hpluuFHTuiT3Am1Wd36', 'zFJ_WoNhPxNh_mLDluioqxij3t_unkuX', null, null, null, '127.0.0.1', '1523138707', '1523138707', '0', '10', null);
-INSERT INTO `user` VALUES ('5', 'vaneza', 'vaneza@yahoo.es', '$2y$10$7Im8F0cwphxhXKgesRwLMOm0ODp2RpoCuK2ps2G6sJakAyUVyhrVe', 'S0SyTURopE5cWHUHmocB4PgH_PiFEhun', null, null, null, '127.0.0.1', '1523140613', '1523140613', '0', '10', null);
-INSERT INTO `user` VALUES ('6', 'ricardo12', 'ricardoa@gmail.com', '$2y$10$LA3f1xGoTnrEk5GC.rYO8eWFa03cRUadwSq/TVFu3vLqH1uKUaxaC', 'KJqAqkm6I9h9MpTR6q9V1BXQyShpyvXk', null, null, null, '127.0.0.1', '1523143437', '1523143437', '0', '10', null);
+INSERT INTO `user` VALUES ('3', 'marianelas', 'marianelas@gmail.com', '$2y$10$5BBEKoDdxoZTTxTbtpxoi.4a9zM4PowZIzjorePo3TXemvvFv38qK', 'xuz4ps1Fi77mGS_dxkleqOAewaF82YDf', '1523080800', null, null, '127.0.0.1', '1523137168', '1523373094', '0', '10', null);
+INSERT INTO `user` VALUES ('4', 'ramiro', 'ramiro@yahoo.es', '$2y$10$PUqe2GNHr9NErb5lLAZxNeHrSORkU3TxH7hpluuFHTuiT3Am1Wd36', 'zFJ_WoNhPxNh_mLDluioqxij3t_unkuX', '1523080800', null, null, '127.0.0.1', '1523138707', '1523138707', '0', '10', null);
+INSERT INTO `user` VALUES ('5', 'vaneza', 'vaneza@yahoo.es', '$2y$10$7Im8F0cwphxhXKgesRwLMOm0ODp2RpoCuK2ps2G6sJakAyUVyhrVe', 'S0SyTURopE5cWHUHmocB4PgH_PiFEhun', '1523080800', null, null, '127.0.0.1', '1523140613', '1523140613', '0', '10', null);
+INSERT INTO `user` VALUES ('6', 'ricardo12', 'ricardoa@gmail.com', '$2y$10$LA3f1xGoTnrEk5GC.rYO8eWFa03cRUadwSq/TVFu3vLqH1uKUaxaC', 'KJqAqkm6I9h9MpTR6q9V1BXQyShpyvXk', '1523080800', null, null, '127.0.0.1', '1523143437', '1523143437', '0', '10', null);
+INSERT INTO `user` VALUES ('9', 'test', 'test@gmail.com', '$2y$10$gJMiqDXJjjFfyDu//t3dZu3wv7iYsdiC8Wx4V4Hxn5LBHEAP4d1sC', '5mXNtlQoic8vT9uh_9LWMjF8WWjTniiX', '1523080800', null, null, '127.0.0.1', '1523154386', '1523154386', '0', '10', null);
+INSERT INTO `user` VALUES ('10', 'rigo', 'rigoberto@gmail.com', '$2y$10$BTH9qyyb1.9z0bL7azdCSum4yiko8Vq/NYNUrIcfeut3Ouo8JaeIW', 'gg91zzFVi1HFicHqqoMyFfcHhzgTUwW5', '1523080800', null, null, '127.0.0.1', '1523216925', '1523216925', '0', '10', null);
+INSERT INTO `user` VALUES ('11', 'sofi', 'sofi@gmail.com', '$2y$10$0xkhbPYwt6wluwrBPxcKKOHkfoI3OXlaghU9sbx/4sGNJRiggCwgm', 'SkLWdheL8CRpwL3YcOmEsfJGcC5XAsmq', '1523167200', null, null, '127.0.0.1', '1523217526', '1523217814', '0', '10', null);
+INSERT INTO `user` VALUES ('12', 'kzuniga', 'kassandrazuniga16@gmail.com', '$2y$10$cjjCp2q1ov.cANn81w90auVuBrzsbC4gp4ABktgvyxgAVHAHZOFGe', 'HYQZBeQ75TRZynYynCRSyBLcETSb-BaM', '1523218158', null, null, '127.0.0.1', '1523218158', '1523218158', '0', '10', null);
+INSERT INTO `user` VALUES ('13', 'estela', 'estela@gmail.com', '$2y$10$IZiPPsD4IHnCTPwaqs7y/eE9C1Ec1caDrj2m3gFYvkIzc1ww9wEvm', 'vPyy8VvuGpWeFgAp-NY-X2o5P-DgMiEr', null, null, null, '127.0.0.1', '1523218763', '1523218840', '0', '10', null);
+INSERT INTO `user` VALUES ('19', 'test2', 'test2@gmail.com', '$2y$10$VgnSyMHfR9TSLIWuqWFmwevM5I12/QIGNl20SFa3H0vk3ft8fb1/6', '8717JcFymnVvjHGvkzL9fNeLKGNNczNA', '1523224127', null, null, '127.0.0.1', '1523224127', '1523224127', '0', '10', null);
+INSERT INTO `user` VALUES ('20', 'marco', 'marco@gmail.com', '$2y$10$xNzoSVuYXYDumSdX2.S42u7h0LDF6/gCPjcc84IaYBeXw3sFSF2W6', 'rD2gp9QVVgXEwOaio-byM64a4FjvSG9l', '1523224350', null, null, '127.0.0.1', '1523224350', '1523224350', '0', '10', null);
+INSERT INTO `user` VALUES ('22', 'rene', 'rene@gmail.com', '$2y$10$ffMSg3ultRn0rwx9YeOViuRoFctaMAuvv2KXTDCevm8S3GkkuBAOq', 'd_1VS5uxr4TN9YPhEBLi3BmrJUDtdO59', '1523371612', null, null, '127.0.0.1', '1523371612', '1523371612', '0', '10', null);
+INSERT INTO `user` VALUES ('23', 'octavio', 'octavio@gmail.com', '$2y$10$eC9rE59FZRZIJY7lt4/24en1j9wkgzXCkSHp6HQ9h/KKGAfe1A/7K', 'v2p0LWyW9L2HMSKr7n1b5ulRidxi9wZj', '1523371689', null, null, '127.0.0.1', '1523371689', '1523371689', '0', '10', null);
+INSERT INTO `user` VALUES ('24', 'chomas', 'chomas@gmail.com', '$2y$10$lzr4zNsKHz4BNG4R1u6wAuX6hJw1TQTQnOf/V1SL.XlG.weKRwB7y', 'W9w8RgmitxX8S5cxY1oaqQywNT26sg9C', '1523371867', null, null, '127.0.0.1', '1523371867', '1523371867', '0', '10', null);
+INSERT INTO `user` VALUES ('25', 'wilmer', 'wilmer@gmail.com', '$2y$10$7GEMJrNV1iw57kxBZxz40OIrNQhu3S/rszC/nUVszDI/mbJxNNvBW', 'DOdJK3EJBlxdFOh5gHSjF3KSKEfgxc7O', '1523372487', null, null, '127.0.0.1', '1523372487', '1523372487', '0', '10', null);
+INSERT INTO `user` VALUES ('26', 'norman', 'norman@gmail.com', '$2y$10$yCkc1E7sYz.FJqQ.BUrcDOs4GgmWsN2AfDJ9RUFr2iwyg5GE6W/5y', 'LyrQJunjuOq8z_aWjm1g88Ux8J9ACDJc', '1523378276', null, null, '127.0.0.1', '1523378276', '1523378276', '0', '10', null);
 
 -- ----------------------------
 -- View structure for `lista_equipos`

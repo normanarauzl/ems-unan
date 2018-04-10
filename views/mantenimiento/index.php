@@ -26,17 +26,17 @@ $this->params['breadcrumbs'][] = $this->title;
 
 //            'Id',
 //            'IdUbicacion',
-            [
-                'attribute' => 'IdUbicacion',
-                'value'=>'idUbicacion.Descripcion',
-            ],
+//            [
+//                'attribute' => 'IdUbicacion',
+//                'value'=>'idUbicacion.Descripcion',
+//            ],
             'Fecha',
             'Observacion',
-//            'IdAyudante',
-            [
-                'attribute' => 'IdAyudante',
-                'value'=>'idAyudante.Nombre',
-            ],
+            'IdAyudante',
+//            [
+//                'attribute' => 'IdAyudante',
+//                'value'=>'idAyudante.Nombre',
+//            ],
             
 
             ['class' => 'yii\grid\ActionColumn'],
