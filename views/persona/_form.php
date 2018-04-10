@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
+use app\models\TipoPersona;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Persona */
@@ -11,7 +13,7 @@ use yii\helpers\Url;
 
 <div class="persona-form">
 
-    <?php $form = ActiveForm::begin(['id'=>'registration-form',
+    <?php $form = ActiveForm::begin(['id'=>'persona-form',
          'enableAjaxValidation'=>true,
          'validationUrl'=>Url::toRoute('persona/validation'),
         ]); ?>
@@ -32,6 +34,12 @@ use yii\helpers\Url;
         </div>
         <div class="col-md-2">
             <?= $form->field($model, 'Telefono')->textInput(['maxlength' => true, 'required'=>true]) ?>
+        </div>
+        <div class="col-md-2">
+            <?= $form->field($model, 'IdTipo')->dropDownList(
+                ArrayHelper::map(TipoPersona::find()->asArray()->all(),'Id','Descripcion'),
+                ['prompt'=>'Seleccione el Tipo', 'required'=>true]
+            );?>
         </div>
     </div>
 

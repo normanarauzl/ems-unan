@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\Persona;
 use app\models\PersonaSearch;
+use yii\helpers\Url;
 use yii\helpers\VarDumper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -15,9 +16,11 @@ use dektrium\user\helpers\Password;
 use app\models\TipoPersona;
 use dektrium\user\controllers\RegistrationController;
 use dektrium\user\models\RegistrationForm;
+use dektrium\user\Module;
 
 /**
  * PersonaController implements the CRUD actions for Persona model.
+ * @property \dektrium\user\Module $module
  */
 class PersonaController extends Controller
 {
@@ -71,7 +74,7 @@ class PersonaController extends Controller
 
     public function actionValidation()
     {
-        $user = new User;
+        $user = \Yii::createObject(RegistrationForm::className());
         if (Yii::$app->request->isAjax && $user->load(Yii::$app->request->post()))
         {
             Yii::$app->response->format = 'json';
@@ -88,13 +91,14 @@ class PersonaController extends Controller
     {
         $model->attributes = $post['Persona'];
         $model->IdUsuario = $this->FindUser($email);
-        $model->IdTipo = TipoPersona::findOne(['Descripcion'=>'Docente'])->Id;
+        $model->IdTipo = $post['Persona']['IdTipo'];
         $model->save();
     }
 
     public function actionCreate()
     {
         $model = new Persona();
+
         $user = \Yii::createObject(RegistrationForm::className());
 
         if ($user->load(\Yii::$app->request->post()) && $user->register()) {
@@ -104,7 +108,8 @@ class PersonaController extends Controller
             return $this->redirect(['view', 'id' => $model->Id]);
         } else {
             return $this->render('create', [
-                'model' => $model, 'user'=>$user
+                'model' => $model,
+                'user'=>$user
             ]);
         }
     }

@@ -5,15 +5,23 @@ use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Persona */
-
-$this->title = 'Registro Completado con Éxito';
+$this->title = 'Detalle de registro ';
 ?>
+
 <div class="persona-view">
 
-    <div class="alert alert-success">
-        El administrador del sitio se pondrá en contacto con usted para confirmar sus credenciales
-    </div>
-    <div class="text-center">
-        <?= Html::a('Regresar al Inicio', ['/site/index'], ['class'=>'btn btn-primary']) ?>
+    <?= DetailView::widget([
+        'model' => $model,
+        'attributes' => [
+            'Nombres',
+            'Apellidos',
+            'Cedula',
+            'Telefono',
+        ],
+    ]) ?>
+    <div class="row">
+        <div class="col-md-2">
+            <div class="alert alert-success"><?= $model->idTipo->Descripcion?></div>
+        </div>
     </div>
 </div>
