@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'Estado',
                 'value' => function ($model) {
-                    return $model->Estado == 1 ? 'Bueno' : 'Malo';
+                    return $model->Estado == 1 ? 'Activa' : 'Inactiva';
                 },
             ],
             //'IdClasificacionUbicacion',

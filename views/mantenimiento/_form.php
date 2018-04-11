@@ -17,8 +17,6 @@ use kartik\select2\Select2;
 $data = ArrayHelper::map(ListaEquipos::find()->where(['Estado'=>'1'])->all(), 'Id', 'Descripcion');
 ?>
 
-
-
 <span ng-init='movimientoMantenimiento = <?= Json::encode($model->movimientoMantenimientos)?>'></span>
 <div class="mantenimiento-form" ng-controller="MantenimientoController">
 
@@ -47,7 +45,7 @@ $data = ArrayHelper::map(ListaEquipos::find()->where(['Estado'=>'1'])->all(), 'I
                 </div>
                 <div class="col-md-3">
                     <?= $form->field($model, 'IdAyudante')->dropDownList(ArrayHelper::map(Persona::find()->select(['Nombres','Id'])->where(['Estado'=>'1'])->all(), 'Id', 'Nombres'),
-                        ['prompt'=>'Seleccione el ayudante','required'=>true]); ?>
+                        ['prompt'=>'Enviado por:','required'=>true]); ?>
                 </div>
             </div>
         </div>
