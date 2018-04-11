@@ -18,8 +18,8 @@ class UbicacionSearch extends Ubicacion
     public function rules()
     {
         return [
-            [['Id', 'Estado', 'IdClasificacionUbicacion'], 'integer'],
-            [['Descripcion'], 'safe'],
+            [['Id', 'Estado'], 'integer'],
+            [['Descripcion', 'IdClasificacionUbicacion'], 'safe'],
         ];
     }
 
@@ -58,13 +58,16 @@ class UbicacionSearch extends Ubicacion
         }
 
         // grid filtering conditions
+        $query->joinWith('idClasificacionUbicacion');
+
         $query->andFilterWhere([
             'Id' => $this->Id,
             'Estado' => $this->Estado,
-            'IdClasificacionUbicacion' => $this->IdClasificacionUbicacion,
         ]);
 
-        $query->andFilterWhere(['like', 'Descripcion', $this->Descripcion]);
+        $query->andFilterWhere(['like', 'ubicacion.Descripcion', $this->Descripcion])
+              ->andFilterWhere(['like', 'clasificacion_ubicacion.Descripcion', $this->IdClasificacionUbicacion])
+        ;
 
         return $dataProvider;
     }
