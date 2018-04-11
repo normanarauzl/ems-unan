@@ -4,13 +4,13 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Ubicacion */
+/* @var $model app\models\ClasificacionUbicacion */
 
 $this->title = $model->Id;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Ubicacions'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Clasificacion Ubicacions'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="ubicacion-view">
+<div class="clasificacion-ubicacion-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -28,16 +28,12 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'Id',
+            //'Id',
             'Descripcion',
             [
-                'attribute' => 'Estado',
-                'value' => function ($model) {
-                    return $model->Estado == 1 ? 'Bueno' : 'Malo';
-                },
+                'attribute' => 'PermitirUsuario',
+                'value' => 1 ? 'Si' : 'No',
             ],
-            //'IdClasificacionUbicacion',
-            'idClasificacionUbicacion.Descripcion:text:Clasificacion',
         ],
     ]) ?>
 

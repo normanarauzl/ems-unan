@@ -10,9 +10,10 @@ use Yii;
  * @property integer $Id
  * @property string $Descripcion
  * @property integer $Estado
- * @property integer $Clasificacion
+ * @property integer $IdClasificacionUbicacion
  *
  * @property Solicitud[] $solicituds
+ * @property ClasificacionUbicacion $idClasificacionUbicacion
  */
 class Ubicacion extends \yii\db\ActiveRecord
 {
@@ -30,8 +31,9 @@ class Ubicacion extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['Estado', 'Clasificacion'], 'integer'],
+            [['Estado', 'IdClasificacionUbicacion'], 'integer'],
             [['Descripcion'], 'string', 'max' => 255],
+            [['IdClasificacionUbicacion'], 'exist', 'skipOnError' => true, 'targetClass' => ClasificacionUbicacion::className(), 'targetAttribute' => ['IdClasificacionUbicacion' => 'Id']],
         ];
     }
 
@@ -44,7 +46,7 @@ class Ubicacion extends \yii\db\ActiveRecord
             'Id' => Yii::t('app', 'ID'),
             'Descripcion' => Yii::t('app', 'Descripcion'),
             'Estado' => Yii::t('app', 'Estado'),
-            'Clasificacion' => Yii::t('app', 'Clasificacion'),
+            'IdClasificacionUbicacion' => Yii::t('app', 'Categoria de Ubicacion'),
         ];
     }
 
@@ -55,30 +57,12 @@ class Ubicacion extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Solicitud::className(), ['IdUbicacion' => 'Id']);
     }
-    
-    const Clasificacion_1 = 1;
-    const Clasificacion_2 = 2;
-    const Clasificacion_3 = 3;
-    const Clasificacion_4 = 4;
 
     /**
-     * @return array
+     * @return \yii\db\ActiveQuery
      */
-    public static function getClasificacion()
+    public function getIdClasificacionUbicacion()
     {
-        return [
-            self::Clasificacion_1 => 'Oficinas',
-            self::Clasificacion_2 => 'Mantenimiento',
-            self::Clasificacion_3 => 'Aulas',
-            self::Clasificacion_4 => 'Salas/Auditorios',
-        ];
-    }
-
-    /**
-     * @return string
-     */
-    public function getClasificacionLabel()
-    {
-        return self::getClasificacion()[$this->Clasificacion];
+        return $this->hasOne(ClasificacionUbicacion::className(), ['Id' => 'IdClasificacionUbicacion']);
     }
 }

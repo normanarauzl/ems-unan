@@ -39,7 +39,7 @@ use yii\helpers\ArrayHelper;
                 <div class="col-md-2">
                     <?= $form->field($model, 'IdTipo')->dropDownList(
                         ArrayHelper::map(TipoPersona::find()->asArray()->all(),'Id', 'Descripcion'),
-                        ['prompt'=>'Seleccione Persona','required'=>true]
+                        ['prompt'=>'Seleccione tipo de usuario','required'=>true]
                     );?>
                 </div>
             </div>
