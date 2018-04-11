@@ -6,6 +6,8 @@ use Yii;
 use app\models\Mantenimiento;
 use app\models\MantenimientoSearch;
 use yii\web\Controller;
+use app\models\ListaEquipos;
+use yii\helpers\Json;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -27,6 +29,12 @@ class MantenimientoController extends Controller
                 ],
             ],
         ];
+    }
+
+    public function actionDatosEquipo($IdEquipo)
+    {
+        $json = ListaEquipos::findOne(['Id'=>$IdEquipo]);
+        return Json::encode($json);
     }
 
     /**
