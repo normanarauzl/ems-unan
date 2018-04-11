@@ -43,9 +43,16 @@ use yii\helpers\Url;
                         ['label' => 'Mantenimientos', 'icon' => 'fa fa-ambulance', 'url' => ['/mantenimiento/index'],
                             'visible'=>!Yii::$app->user->isGuest
                             ],
-                        ['label' => 'Ubicaciones', 'icon' => 'fa fa-compass', 'url' => ['/ubicacion/index'],
-                            'visible'=>!Yii::$app->user->isGuest
+                        [
+                            'label' => 'Ubicaciones',
+                            'icon' => 'fa fa-compass',
+                            'url' => '#',
+                            'items' => [
+                                ['label' => 'Ubicaciones', 'icon' => 'fa fa-location-arrow', 'url' => ['/ubicacion/index'],],
+                                ['label' => 'Clasificacion de Ubicaciones', 'icon' => 'fa fa-map', 'url' => ['/clasificacion-ubicacion/index'],],
                             ],
+                            'visible'=>!Yii::$app->user->isGuest
+                        ],
                         ['label' => 'Prestamos', 'icon' => 'fa fa-sliders', 'url' => ['/prestamos/index'],
                             'visible'=>!Yii::$app->user->isGuest
                             ],

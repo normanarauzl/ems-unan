@@ -5,12 +5,12 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Ubicacion;
+use app\models\ClasificacionUbicacion;
 
 /**
- * UbicacionSearch represents the model behind the search form about `app\models\Ubicacion`.
+ * ClasificacionUbicacionSearch represents the model behind the search form about `app\models\ClasificacionUbicacion`.
  */
-class UbicacionSearch extends Ubicacion
+class ClasificacionUbicacionSearch extends ClasificacionUbicacion
 {
     /**
      * @inheritdoc
@@ -18,7 +18,7 @@ class UbicacionSearch extends Ubicacion
     public function rules()
     {
         return [
-            [['Id', 'Estado', 'IdClasificacionUbicacion'], 'integer'],
+            [['Id', 'PermitirUsuario'], 'integer'],
             [['Descripcion'], 'safe'],
         ];
     }
@@ -41,7 +41,7 @@ class UbicacionSearch extends Ubicacion
      */
     public function search($params)
     {
-        $query = Ubicacion::find();
+        $query = ClasificacionUbicacion::find();
 
         // add conditions that should always apply here
 
@@ -60,8 +60,7 @@ class UbicacionSearch extends Ubicacion
         // grid filtering conditions
         $query->andFilterWhere([
             'Id' => $this->Id,
-            'Estado' => $this->Estado,
-            'IdClasificacionUbicacion' => $this->IdClasificacionUbicacion,
+            'PermitirUsuario' => $this->PermitirUsuario,
         ]);
 
         $query->andFilterWhere(['like', 'Descripcion', $this->Descripcion]);
