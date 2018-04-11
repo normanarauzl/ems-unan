@@ -2,14 +2,14 @@ var app = angular.module('ngApp',[])
 
 function SolicitudController($scope, $http)
 {
-
     $scope.add = function()
     {
-        var IdEquipo = $scope.IdEquipo
+        var NoSerie = $scope.NoSerie
         var Descripcion = $('#select2-IdEquipo-container').text()
         var bandera = false
+
         angular.forEach($scope.detalleSolicitud,function (value, key) {
-            if(value.IdEquipo == IdEquipo)
+            if(value.NoSerie == NoSerie)
             {
                 alertify.error('El equipo ya existe en la lista')
                 bandera = true
@@ -51,7 +51,7 @@ function SolicitudController($scope, $http)
             if(response.data.length == 0)
                 alertify.success('No hay informacion para mostrar')
             else {
-                $scope.IdEquipo = response.data.IdEquipo,
+                    $scope.IdEquipo = response.data.IdEquipo,
                     $scope.Marca = response.data.Marca,
                     $scope.Modelo = response.data.Modelo,
                     $scope.Color = response.data.Color,
