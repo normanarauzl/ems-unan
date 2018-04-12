@@ -57,5 +57,15 @@ class Mantenimiento extends \yii\db\ActiveRecord
     {
         return $this->hasMany(MovimientoMantenimiento::className(), ['IdMantenimiento' => 'Id']);
     }
-    
+
+    public function getIdAyudante()
+    {
+        return $this->hasOne(Personas::className(), ['Id' => 'IdAyudante']);
+    }
+
+    public function getIdUbicacion()
+    {
+        return $this->hasOne(Ubicacion::className(), ['Id' => 'IdUbicacion']);
+    }
+
 }

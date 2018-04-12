@@ -53,7 +53,7 @@ $data = ArrayHelper::map(ListaEquipos::find()->where(['Estado'=>'1'])->all(), 'I
 
     <div class="panel panel-primary">
         <div class="panel-heading">
-            <h3 class="panel-title">Detalle del Envio [Seleccione el/los equipo y agregue a la lista]</h3>
+            <h3 class="panel-title">Detalle del Envio [Seleccione el/los equipos y agregue a la lista]</h3>
         </div>
         <table class="table table-fixed" width="100%">
             <thead>

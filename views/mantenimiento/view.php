@@ -29,12 +29,12 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
 //            'Id',
-           'IdUbicacion',
-//            'idUbicacion.Descripcion:text:Ubicacion',
+//           'IdUbicacion',
+            'idUbicacion.Descripcion:text:Ubicacion',
             'Fecha',
             'Observacion',
-            'IdAyudante',
-//            'idAyudante.Descripcion:text:Enviado por',
+//            'IdAyudante',
+            'idAyudante.NombreCompleto:text:Enviado por',
         ],
     ]) ?>
 
