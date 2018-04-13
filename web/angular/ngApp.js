@@ -10,12 +10,6 @@ function SolicitudController($scope, $http)
 
         angular.forEach($scope.detalleSolicitud,function (value, key) {
             if(value.NoSerie == NoSerie)
-        angular.forEach($scope,function (value, key) {
-            if(value.IdEquipo == IdEquipo)
-
-
-        angular.forEach($scope.detalleSolicitud,function (value, key) {
-            if(value.NoSerie == NoSerie)
             {
                 alertify.error('El equipo ya existe en la lista')
                 bandera = true
