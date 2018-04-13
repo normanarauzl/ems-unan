@@ -18,8 +18,8 @@ class PeriodoSearch extends Periodo
     public function rules()
     {
         return [
-            [['Id', 'DuracionMinutos', 'IdTurno'], 'integer'],
-            [['Descripcion', 'HoriaInicio', 'HoraFin', 'Estado'], 'safe'],
+            [['Id', 'DuracionMinutos'], 'integer'],
+            [['Descripcion', 'HoriaInicio', 'HoraFin', 'Estado', 'IdTurno'], 'safe'],
         ];
     }
 
@@ -58,16 +58,18 @@ class PeriodoSearch extends Periodo
         }
 
         // grid filtering conditions
+        $query->joinWith('idTurno');
+
         $query->andFilterWhere([
             'Id' => $this->Id,
             'DuracionMinutos' => $this->DuracionMinutos,
-            'IdTurno' => $this->IdTurno,
         ]);
 
-        $query->andFilterWhere(['like', 'Descripcion', $this->Descripcion])
+        $query->andFilterWhere(['like', 'periodo.Descripcion', $this->Descripcion])
             ->andFilterWhere(['like', 'HoriaInicio', $this->HoriaInicio])
             ->andFilterWhere(['like', 'HoraFin', $this->HoraFin])
-            ->andFilterWhere(['like', 'Estado', $this->Estado]);
+            ->andFilterWhere(['like', 'Estado', $this->Estado])
+            ->andFilterWhere(['like', 'turno.Descripcion', $this->IdTurno]);
 
         return $dataProvider;
     }
