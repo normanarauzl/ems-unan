@@ -7,14 +7,11 @@ function SolicitudController($scope, $http)
         var NoSerie = $scope.NoSerie
         var Descripcion = $('#select2-IdEquipo-container').text()
         var bandera = false
-<<<<<<< HEAD
 
         angular.forEach($scope.detalleSolicitud,function (value, key) {
             if(value.NoSerie == NoSerie)
-=======
         angular.forEach($scope,function (value, key) {
             if(value.IdEquipo == IdEquipo)
->>>>>>> 4635552ead50d83f5185de893c4afb1866c8882b
             {
                 alertify.error('El equipo ya existe en la lista')
                 bandera = true
