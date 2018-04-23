@@ -2,21 +2,21 @@ var app = angular.module('ngApp',[])
 
 function SolicitudController($scope, $http)
 {
+    var IdEquipo = null
     $scope.add = function()
     {
-        var NoSerie = $scope.NoSerie
-        var Descripcion = $('#select2-IdEquipo-container').text()
         var bandera = false
+        var Descripcion = $('#select2-Descripcion-container').text()
 
         angular.forEach($scope.detalleSolicitud,function (value, key) {
-            if(value.NoSerie == NoSerie)
+            if(value.IdEquipo == IdEquipo)
             {
                 alertify.error('El equipo ya existe en la lista')
                 bandera = true
             }
         })
 
-        if ($scope.Modelo == null)
+        if (IdEquipo == null)
         {
             alertify.error('Debe seleccionar un equipo de la lista')
         }
@@ -41,7 +41,7 @@ function SolicitudController($scope, $http)
 
     $scope.SetEquipo = function()
     {
-        var IdEquipo = $scope.IdEquipo
+        IdEquipo = $scope.IdEquipo
         $http({
             method : 'GET',
             url : 'datos-equipo',

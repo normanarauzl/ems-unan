@@ -113,8 +113,8 @@ $data = ArrayHelper::map(ListaEquipos::find()->where(['Estado'=>'1'])->andWhere(
             <tr>
                 <td>
                     <?= Select2::widget([
-                        'name' => 'IdEquipo',
-                        'id'=>'IdEquipo',
+                        'name' => 'Descripcion',
+                        'Id'=>'Descripcion',
                         'data' => $data,
                         'options' => [
                             'multiple' => false,
