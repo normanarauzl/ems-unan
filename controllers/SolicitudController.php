@@ -6,6 +6,7 @@ use app\models\User;
 use Yii;
 use app\models\Solicitud;
 use app\models\SolicitudSearch;
+use yii\helpers\ArrayHelper;
 use yii\helpers\VarDumper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -13,6 +14,7 @@ use yii\filters\VerbFilter;
 use app\models\ListaEquipos;
 use yii\helpers\Json;
 use app\models\Persona;
+use app\models\ListaPeriodos;
 
 /**
  * SolicitudController implements the CRUD actions for Solicitud model.
@@ -53,6 +55,26 @@ class SolicitudController extends Controller
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
+    }
+
+    public function actionPeriodos($IdTurno)
+    {
+        $turnos = ListaPeriodos::find()
+            ->where(['IdTurno'=>$IdTurno])
+            ->asArray()
+            ->all()
+            ;
+
+        if (count($turnos)!=0)
+        {
+            foreach ($turnos as $turno)
+            {
+                echo "<option value ='".$turno['Id']."'>".$turno['DescripcionCompleta']."</option>";
+            }
+        }
+        else {
+            echo "<option>-</option>";
+        }
     }
 
     /**

@@ -9,6 +9,7 @@ use Yii;
  *
  * @property integer $Id
  * @property string $DescripcionCompleta
+ * @property integer $IdTurno
  */
 class ListaPeriodos extends \yii\db\ActiveRecord
 {
@@ -26,7 +27,7 @@ class ListaPeriodos extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['Id'], 'integer'],
+            [['Id', 'IdTurno'], 'integer'],
             [['DescripcionCompleta'], 'string'],
         ];
     }
@@ -39,6 +40,7 @@ class ListaPeriodos extends \yii\db\ActiveRecord
         return [
             'Id' => 'ID',
             'DescripcionCompleta' => 'Descripcion Completa',
+            'IdTurno' => 'Id Turno',
         ];
     }
 }
