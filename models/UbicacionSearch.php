@@ -47,6 +47,7 @@ class UbicacionSearch extends Ubicacion
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => [ 'pageSize' => 10 ],
         ]);
 
         $this->load($params);
