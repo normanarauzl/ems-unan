@@ -212,7 +212,26 @@ CREATE TABLE `auth_rule` (
 -- ----------------------------
 -- Records of auth_rule
 -- ----------------------------
+-- ----------------------------
+-- Table structure for `clasificacion_ubicacion`
+-- ----------------------------
+DROP TABLE IF EXISTS `clasificacion_ubicacion`;
+CREATE TABLE `clasificacion_ubicacion` (
+`Id`  int(11) NOT NULL AUTO_INCREMENT ,
+`Descripcion`  varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ,
+`PermitirUsuario`  int(11) NULL DEFAULT NULL ,
+PRIMARY KEY (`Id`)
+)
+ENGINE=InnoDB
+DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
+AUTO_INCREMENT=6;
 
+-- ----------------------------
+-- Records of clasificacion_ubicacion
+-- ----------------------------
+BEGIN;
+INSERT INTO `clasificacion_ubicacion` VALUES ('1', 'Oficina', '2'), ('2', 'Mantenimiento', '2'), ('3', 'Aulas', '1'), ('4', 'Salas/Posgrado', '2'), ('5', 'Auditorio', '2');
+COMMIT;
 -- ----------------------------
 -- Table structure for `detalle_solicitud`
 -- ----------------------------
@@ -587,12 +606,18 @@ INSERT INTO `turno` VALUES ('3', 'Nocturno', '1');
 -- ----------------------------
 DROP TABLE IF EXISTS `ubicacion`;
 CREATE TABLE `ubicacion` (
-  `Id` int(11) NOT NULL AUTO_INCREMENT,
-  `Descripcion` varchar(255) DEFAULT NULL,
-  `Estado` int(11) DEFAULT NULL,
-  `Clasificacion` int(11) DEFAULT NULL,
-  PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+	`Id`  int(11) NOT NULL AUTO_INCREMENT ,
+	`Descripcion`  varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ,
+	`Estado`  int(11) NULL DEFAULT NULL ,
+	`IdClasificacionUbicacion`  int(11) NULL DEFAULT NULL ,
+PRIMARY KEY (`Id`),
+FOREIGN KEY (`IdClasificacionUbicacion`) REFERENCES `clasificacion_ubicacion` (`Id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+INDEX `IdClasificacion_EFK` (`IdClasificacionUbicacion`) USING BTREE 
+)
+ENGINE=InnoDB
+DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
+AUTO_INCREMENT=5
+;
 
 -- ----------------------------
 -- Records of ubicacion
