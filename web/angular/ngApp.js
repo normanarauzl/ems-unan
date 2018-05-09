@@ -2,7 +2,40 @@ var app = angular.module('ngApp',[])
 
 function SolicitudController($scope, $http)
 {
+
     var IdEquipo = null
+    CargarDetalleSolicitud()
+
+    function BuscarEquipo(IdEquipo, Id)
+    {
+        var equipo = {Id:'',IdEquipo:'',Descripcion:'',Marca:'',Color:'',Modelo:'',NoSerie:''}
+
+        angular.forEach($scope.equipos, function(value, key){
+            if (value.Id == IdEquipo)
+            {
+                equipo.Id = Id,
+                equipo.IdEquipo = value.Id,
+                equipo.Descripcion = value.Descripcion,
+                equipo.Marca = value.Marca,
+                equipo.Color = value.Color,
+                equipo.Modelo = value.Modelo,
+                equipo.NoSerie = value.NoSerie
+            }
+        })
+        return equipo
+    }
+
+    function CargarDetalleSolicitud()
+    {
+        oldDetalle = $scope.detalleSolicitud
+        $scope.detalleSolicitud = []
+
+        angular.forEach(oldDetalle,function (value, key) {
+
+            $scope.detalleSolicitud.push(BuscarEquipo(value.IdEquipo, value.Id))
+        })
+    }
+
     $scope.add = function()
     {
         var bandera = false

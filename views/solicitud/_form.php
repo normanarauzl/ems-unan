@@ -5,10 +5,11 @@ use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use app\models\Ubicacion;
 use yii\jui\DatePicker;
-use app\models\ListaPeriodos;
 use yii\helpers\Json;
 use app\models\Periodo;
 use app\models\Turno;
+use yii\helpers\VarDumper;
+use app\models\Equipo;
 /* @var $this yii\web\View */
 /* @var $model app\models\Solicitud */
 /* @var $form yii\widgets\ActiveForm */
@@ -18,6 +19,8 @@ $IsAdmin = Yii::$app->user->identity->username == 'admin'? true : false;
 ?>
 
 <span ng-init='detalleSolicitud = <?= Json::encode($model->detalleSolicituds)?>'></span>
+<span ng-init='equipos = <?= Json::encode(Equipo::find()->asArray()->all())?>'></span>
+
 <div class="solicitud-form" ng-controller="SolicitudController">
 
     <?php $form = ActiveForm::begin(); ?>
@@ -78,7 +81,7 @@ $IsAdmin = Yii::$app->user->identity->username == 'admin'? true : false;
                 </div>
                 <div class="col-md-2">
                     <label for="">Turno </label>
-                    <?= Html::dropDownList('Turno', null,
+                    <?= Html::dropDownList('Turno',null,
                         ArrayHelper::map(Turno::find()->all(), 'Id', 'Descripcion'),
                         [
                             'prompt'=>'Seleccione el Turno',

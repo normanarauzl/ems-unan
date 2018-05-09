@@ -7,12 +7,11 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\SolicitudSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Solicituds';
+$this->title = 'Solicitudes';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="solicitud-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>

@@ -4,7 +4,7 @@ use kartik\select2\Select2;
 use app\models\ListaEquipos;
 use yii\helpers\ArrayHelper;
 
-$data = ArrayHelper::map(ListaEquipos::find()->where(['Estado'=>'1'])->andWhere(['PermitirUsuario'=>'1'])->all(), 'Id', 'Descripcion');
+$data = ArrayHelper::map(ListaEquipos::find()->where(['Prestado'=>'0'])->andWhere(['PermitirUsuario'=>'1'])->all(), 'Id', 'Descripcion');
 ?>
 
 <div class="panel panel-primary">
@@ -38,7 +38,7 @@ $data = ArrayHelper::map(ListaEquipos::find()->where(['Estado'=>'1'])->andWhere(
                 ?>
             </td>
 
-            <input type="hidden" name="IdSolicitud" value="<?= $IdSolicitud?>">
+            <input type="hidden" name="Id" value="<?= $IdSolicitud?>">
             <input type="hidden" ng-model="IdEquipo">
             <td><input type="text" class="form-control" ng-model="Marca" readonly required></td>
             <td><input type="text" class="form-control" ng-model="Modelo" readonly required></td>
@@ -64,6 +64,7 @@ $data = ArrayHelper::map(ListaEquipos::find()->where(['Estado'=>'1'])->andWhere(
         </tr>
         </thead>
         <tr ng-repeat="equipo in detalleSolicitud track by $index">
+            <td hidden ng-model="equipo.Id">{{equipo.Id}}</td>
             <td hidden ng-model="equipo.IdEquipo">{{equipo.IdEquipo}}</td>
             <td ng-model="equipo.Descripcion">{{equipo.Descripcion}}</td>
             <td ng-model="equipo.Marca">{{equipo.Marca}}</td>

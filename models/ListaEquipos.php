@@ -15,6 +15,7 @@ use Yii;
  * @property string $Estado
  * @property string $Descripcion
  * @property integer $PermitirUsuario
+ * @property integer $Prestado
  */
 class ListaEquipos extends \yii\db\ActiveRecord
 {
@@ -32,7 +33,7 @@ class ListaEquipos extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['Id', 'PermitirUsuario'], 'integer'],
+            [['Id', 'PermitirUsuario', 'Prestado'], 'integer'],
             [['Marca', 'Modelo', 'Color', 'NoSerie', 'Estado', 'Descripcion'], 'string', 'max' => 255],
         ];
     }
@@ -47,10 +48,11 @@ class ListaEquipos extends \yii\db\ActiveRecord
             'Marca' => 'Marca',
             'Modelo' => 'Modelo',
             'Color' => 'Color',
-            'NoSerie' => 'No. de Serie',
+            'NoSerie' => 'No Serie',
             'Estado' => 'Estado',
             'Descripcion' => 'Descripcion',
             'PermitirUsuario' => 'Permitir Usuario',
+            'Prestado' => 'Prestado',
         ];
     }
 }
