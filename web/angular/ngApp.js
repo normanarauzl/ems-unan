@@ -101,12 +101,44 @@ function SolicitudController($scope, $http)
 //AQUI AGREGO CONTROLADOR PARA LOS MANTENIMIENTOS --- ERICK----
 function MantenimientoController($scope, $http)
 {
+    var IdEquipo = null
+    CargarMovimientoMantenimiento()
+
+    function BuscarEquipo(IdEquipo, Id)
+    {
+        var equipo = {Id:'',IdEquipo:'',Descripcion:'',Marca:'',Color:'',Modelo:'',NoSerie:''}
+
+        angular.forEach($scope.equipos, function(value, key){
+            if (value.Id == IdEquipo)
+            {
+                equipo.Id = Id,
+                    equipo.IdEquipo = value.Id,
+                    equipo.Descripcion = value.Descripcion,
+                    equipo.Marca = value.Marca,
+                    equipo.Color = value.Color,
+                    equipo.Modelo = value.Modelo,
+                    equipo.NoSerie = value.NoSerie
+            }
+        })
+        return equipo
+    }
+
+    function CargarMovimientoMantenimiento()
+    {
+        oldDetalle = $scope.movimientoMantenimiento
+        $scope.movimientoMantenimiento = []
+
+        angular.forEach(oldDetalle,function (value, key) {
+
+            $scope.movimientoMantenimiento.push(BuscarEquipo(value.IdEquipo, value.Id))
+        })
+    }
 
     $scope.add = function()
     {
-        var IdEquipo = $scope.IdEquipo
-        var Descripcion = $('#select2-IdEquipo-container').text()
         var bandera = false
+        var Descripcion = $('#select2-Descripcion-container').text()
+
         angular.forEach($scope.movimientoMantenimiento,function (value, key) {
             if(value.IdEquipo == IdEquipo)
             {
@@ -115,7 +147,7 @@ function MantenimientoController($scope, $http)
             }
         })
 
-        if ($scope.Modelo == null)
+        if (IdEquipo == null)
         {
             alertify.error('Debe seleccionar un equipo de la lista')
         }
@@ -140,7 +172,7 @@ function MantenimientoController($scope, $http)
 
     $scope.SetEquipo = function()
     {
-        var IdEquipo = $scope.IdEquipo
+        IdEquipo = $scope.IdEquipo
         $http({
             method : 'GET',
             url : 'datos-equipo',
