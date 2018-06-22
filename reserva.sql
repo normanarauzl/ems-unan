@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : local
-Source Server Version : 50718
+Source Server         : ConexionMySQL
+Source Server Version : 50505
 Source Host           : localhost:3306
 Source Database       : reserva
 
 Target Server Type    : MYSQL
-Target Server Version : 50718
+Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2018-05-09 14:56:01
+Date: 2018-06-22 11:49:56
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -246,12 +246,13 @@ CREATE TABLE `detalle_solicitud` (
   KEY `IdSolicitud_DSFK` (`IdSolicitud`),
   CONSTRAINT `IdEquipo_DSFK` FOREIGN KEY (`IdEquipo`) REFERENCES `equipo` (`Id`),
   CONSTRAINT `IdSolicitud_DSFK` FOREIGN KEY (`IdSolicitud`) REFERENCES `solicitud` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of detalle_solicitud
 -- ----------------------------
 INSERT INTO `detalle_solicitud` VALUES ('19', '1', '4');
+INSERT INTO `detalle_solicitud` VALUES ('20', '1', '5');
 
 -- ----------------------------
 -- Table structure for `equipo`
@@ -278,7 +279,7 @@ CREATE TABLE `equipo` (
 -- ----------------------------
 -- Records of equipo
 -- ----------------------------
-INSERT INTO `equipo` VALUES ('1', '1', '0', 'EPSON', 'H553A', 'VA9K4902686', '66936', 'blanco', '1', 'Data Show # 1', '2', '2');
+INSERT INTO `equipo` VALUES ('1', '1', '1', 'EPSON', 'H553A', 'VA9K4902686', '66936', 'blanco', '1', 'Data Show # 1', '2', '2');
 INSERT INTO `equipo` VALUES ('2', '1', '1', 'EPSON', 'H553A', 'TUWK3Z00737', '0', 'blanco', '1', 'Data Show # 2', null, null);
 
 -- ----------------------------
@@ -292,11 +293,17 @@ CREATE TABLE `mantenimiento` (
   `Observacion` varchar(255) DEFAULT NULL,
   `IdAyudante` int(11) DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of mantenimiento
 -- ----------------------------
+INSERT INTO `mantenimiento` VALUES ('1', '2', '2018-06-06', '', '1');
+INSERT INTO `mantenimiento` VALUES ('2', '2', '2018-06-06', '', '1');
+INSERT INTO `mantenimiento` VALUES ('3', '2', '2018-06-06', '', '17');
+INSERT INTO `mantenimiento` VALUES ('4', '2', '2018-06-06', '', '17');
+INSERT INTO `mantenimiento` VALUES ('5', '2', '2018-06-06', '', '17');
+INSERT INTO `mantenimiento` VALUES ('6', '2', '2018-06-06', '', '17');
 
 -- ----------------------------
 -- Table structure for `menu`
@@ -362,11 +369,13 @@ CREATE TABLE `movimiento_mantenimiento` (
   KEY `IdMantenimiento_MFK` (`IdMantenimiento`),
   CONSTRAINT `IdEquipo_MFK` FOREIGN KEY (`IdEquipo`) REFERENCES `equipo` (`Id`),
   CONSTRAINT `IdMantenimiento_MFK` FOREIGN KEY (`IdMantenimiento`) REFERENCES `mantenimiento` (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of movimiento_mantenimiento
 -- ----------------------------
+INSERT INTO `movimiento_mantenimiento` VALUES ('1', '1', '5', null, null);
+INSERT INTO `movimiento_mantenimiento` VALUES ('2', '1', '6', null, null);
 
 -- ----------------------------
 -- Table structure for `periodo`
@@ -527,7 +536,7 @@ CREATE TABLE `solicitud` (
   CONSTRAINT `IdPeriodo_SFK` FOREIGN KEY (`IdPeriodo`) REFERENCES `periodo` (`Id`),
   CONSTRAINT `IdPersona_SFK` FOREIGN KEY (`IdPersona`) REFERENCES `persona` (`Id`),
   CONSTRAINT `IdUbicacion_SFK` FOREIGN KEY (`IdUbicacion`) REFERENCES `ubicacion` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of solicitud
@@ -536,6 +545,7 @@ INSERT INTO `solicitud` VALUES ('1', '17', '1', '2018-04-04', '2018-04-03', 'Pre
 INSERT INTO `solicitud` VALUES ('2', '17', '1', '2018-05-09', '2018-05-16', 'Prestado', null, null, null, 'test', null, null, '1');
 INSERT INTO `solicitud` VALUES ('3', '17', '1', '2018-05-09', '2018-05-09', 'Prestado', null, null, null, 'test', null, null, '1');
 INSERT INTO `solicitud` VALUES ('4', '17', '1', '2018-05-09', '2018-05-09', 'Prestado', null, null, null, 'test', null, null, '1');
+INSERT INTO `solicitud` VALUES ('5', '17', '1', '2018-06-01', '2018-06-04', 'Prestado', null, null, null, '', null, null, '5');
 
 -- ----------------------------
 -- Table structure for `tipo_equipo`
@@ -618,12 +628,13 @@ CREATE TABLE `ubicacion` (
   PRIMARY KEY (`Id`),
   KEY `IdClasificacion_EFK` (`IdClasificacionUbicacion`) USING BTREE,
   CONSTRAINT `ubicacion_ibfk_1` FOREIGN KEY (`IdClasificacionUbicacion`) REFERENCES `clasificacion_ubicacion` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of ubicacion
 -- ----------------------------
 INSERT INTO `ubicacion` VALUES ('1', 'Aula A4', '1', '3');
+INSERT INTO `ubicacion` VALUES ('2', 'Mantenimiento', '1', '2');
 
 -- ----------------------------
 -- Table structure for `user`
@@ -678,10 +689,28 @@ DROP VIEW IF EXISTS `lista_equipos`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `lista_equipos` AS select `equipo`.`Id` AS `Id`,`equipo`.`Marca` AS `Marca`,`equipo`.`Modelo` AS `Modelo`,`equipo`.`Color` AS `Color`,`equipo`.`NoSerie` AS `NoSerie`,`equipo`.`Estado` AS `Estado`,`equipo`.`Descripcion` AS `Descripcion`,`tipo_equipo`.`PermitirUsuario` AS `PermitirUsuario`,`equipo`.`Prestado` AS `Prestado` from (`equipo` join `tipo_equipo`) where (`equipo`.`IdTipo` = `tipo_equipo`.`Id`) ;
 
 -- ----------------------------
+-- View structure for `lista_horarios_solicitudes`
+-- ----------------------------
+DROP VIEW IF EXISTS `lista_horarios_solicitudes`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `lista_horarios_solicitudes` AS select `solicitud`.`Id` AS `IdSolicitud`,`solicitud`.`Estado` AS `EstadoSolicitud`,`periodo`.`Id` AS `IdPeriodo`,`ubicacion`.`Id` AS `IdUbicacion`,`periodo`.`HoriaInicio` AS `HoraInicio`,`periodo`.`HoraFin` AS `HoraFin`,`solicitud`.`FechaInicio` AS `FechaInicio`,`solicitud`.`FechaFin` AS `FechaFin`,concat(`ubicacion`.`Descripcion`,' - ',`lista_personas`.`NombreCompleto`) AS `Titulo` from (((`solicitud` join `ubicacion`) join `periodo`) join `lista_personas`) where ((`solicitud`.`IdUbicacion` = `ubicacion`.`Id`) and (`solicitud`.`IdPeriodo` = `periodo`.`Id`) and (`solicitud`.`IdPersona` = `lista_personas`.`Id`)) ;
+
+-- ----------------------------
 -- View structure for `lista_periodos`
 -- ----------------------------
 DROP VIEW IF EXISTS `lista_periodos`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `lista_periodos` AS select `periodo`.`Id` AS `Id`,concat(`periodo`.`Descripcion`,' - ',`periodo`.`HoriaInicio`,' - ',`periodo`.`HoraFin`) AS `DescripcionCompleta`,`periodo`.`IdTurno` AS `IdTurno` from `periodo` ;
+
+-- ----------------------------
+-- View structure for `lista_personas`
+-- ----------------------------
+DROP VIEW IF EXISTS `lista_personas`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `lista_personas` AS select `persona`.`Id` AS `Id`,concat(`persona`.`Nombres`,`persona`.`Apellidos`) AS `NombreCompleto`,`tipo_persona`.`Descripcion` AS `TipoPersona`,`persona`.`Estado` AS `Estado` from (`tipo_persona` join `persona`) where (`persona`.`IdTipo` = `tipo_persona`.`Id`) ;
+
+-- ----------------------------
+-- View structure for `lista_ubicaciones`
+-- ----------------------------
+DROP VIEW IF EXISTS `lista_ubicaciones`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `lista_ubicaciones` AS select `ubicacion`.`Id` AS `Id`,`ubicacion`.`Descripcion` AS `Descripcion`,`clasificacion_ubicacion`.`PermitirUsuario` AS `PermitirUsuario` from (`ubicacion` join `clasificacion_ubicacion`) where (`ubicacion`.`IdClasificacionUbicacion` = `clasificacion_ubicacion`.`Id`) ;
 
 -- ----------------------------
 -- View structure for `personas`

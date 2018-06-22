@@ -24,7 +24,8 @@
         "kartik-v/yii2-widget-datepicker": "v1.4.3",
         "yii2tech/html2pdf": "1.0.0",
         "kartik-v/yii2-widget-timepicker": "v1.0.3",
-        "yiisoft/yii2-jui": "^2.0"
+        "yiisoft/yii2-jui": "^2.0",
+        "philippfrenzel/yii2fullcalendar": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

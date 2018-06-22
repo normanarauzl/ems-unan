@@ -17,6 +17,7 @@ use app\models\ListaEquipos;
 use yii\helpers\Json;
 use app\models\Persona;
 use app\models\ListaPeriodos;
+use app\models\ListaHorariosSolicitudes;
 
 /**
  * SolicitudController implements the CRUD actions for Solicitud model.
@@ -241,5 +242,32 @@ class SolicitudController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    /**
+     * Controla el comportamiento del calendario para que lo vean los usuarios.
+     */
+
+    public function actionSolicitudusuario($start=NULL,$end=NULL,$_=NULL){
+
+        $solicitudes = ListaHorariosSolicitudes::find()->all();
+
+        $events = array();
+
+        foreach ($solicitudes AS $solicitud){
+            //Probando
+            $Event = new \yii2fullcalendar\models\Event();
+            $Event->id = $solicitud->IdSolicitud;
+            $Event->title = $solicitud->Titulo;
+            $Event->start =date('Y-m-d\TH:i\Z',strtotime($solicitud->FechaInicio.' '.$solicitud->HoraInicio));
+            $Event->end = date('Y-m-d\TH:i\Z',strtotime($solicitud->FechaFin.' '.$solicitud->HoraFin));
+            $events[] = $Event;
+        }
+
+//        return $events;
+
+        return $this->render('solicitudUsuario', [
+            'events'=>$events,
+        ]);
     }
 }
